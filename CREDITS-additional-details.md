@@ -15,6 +15,7 @@ see [CREDITS](../main/CREDITS.md) for the main credits page
 - [Becastled](https://store.steampowered.com/app/1330460/Becastled/)
 - [The End of Dyeus](http://www.endofdyeus.com/)
 - [ABZU](https://store.steampowered.com/app/384190/ABZU/)
+- [Total Tank Simulator](https://store.steampowered.com/app/674500/Total_Tank_Simulator/)
 - [Harvest Moon: A Wonderful Life - review](https://www.youtube.com/watch?v=Qe24X44uoy4)
 - [Space Engineers Trailer 2014](https://www.youtube.com/watch?v=O_UXKce9-OY&t=41s)
 
@@ -62,14 +63,12 @@ see [CREDITS](../main/CREDITS.md) for the main credits page
 - [Astounding Examples Of Three.js In Action](https://1stwebdesigner.com/examples-of-three-js-in-action/)
 - [OpenGL Sphere](http://www.songho.ca/opengl/gl_sphere.html)
 - [Creating an icosphere mesh in code](http://blog.andreaskahler.com/2009/06/creating-icosphere-mesh-in-code.html)
-- [Creating a Simple 3D Endless Runner Game Using Three.js](https://gamedevelopment.tutsplus.com/tutorials/creating-a-simple-3d-endless-runner-game-using-three-js--cms-29157)
+- [Four Ways to Create a Mesh for a Sphere](https://medium.com/game-dev-daily/four-ways-to-create-a-mesh-for-a-sphere-d7956b825db4)
 - [Making a Stylized Skybox Shader](https://www.patreon.com/posts/making-stylized-27402644)
 - [Day Night Cycle - Sun Movement and Color](https://www.youtube.com/watch?v=babgYCTyw3Y) from [One Wheel Studio](https://www.youtube.com/channel/UCkr9CPPqT9VWUjkpo3HcACg)
 - [Unity 5 Tutorial - Day/Night Cycle](https://www.youtube.com/watch?v=DmhSWEJjphQ) from [Aaron Hibberd](https://www.youtube.com/channel/UCC0_trsvWYyqjZ3njunfU4Q)
 - [Simplest possible day night cycle in Unity 5](http://twiik.net/articles/simplest-possible-day-night-cycle-in-unity-5) from [TwiiK.net](http://twiik.net/)
-- [Creating an icosphere mesh in code](http://blog.andreaskahler.com/2009/06/creating-icosphere-mesh-in-code.html)
-- [Four Ways to Create a Mesh for a Sphere](https://medium.com/game-dev-daily/four-ways-to-create-a-mesh-for-a-sphere-d7956b825db4)
-- [Creating Procedural Planets in Unity — Part 1](https://medium.com/@peter_winslow/creating-procedural-planets-in-unity-part-1-df83ecb12e91)
+- [Creating a Simple 3D Endless Runner Game Using Three.js](https://gamedevelopment.tutsplus.com/tutorials/creating-a-simple-3d-endless-runner-game-using-three-js--cms-29157)
 
 #### samplers
 - [Rainy Grass Hill Simulator](https://focusless.itch.io/rainy-grass-hill-simulator)

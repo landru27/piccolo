@@ -46,6 +46,7 @@ The author and main (so far, only) contributor to [piccolo](https://github.com/l
 ### utilities
 - on-line function graphing tool : [Desmos graphing calculator](https://www.desmos.com/calculator) (can also graph a whole lot more than just functions!)
   - also of interest is this helpful list of [basic functions](http://mathonweb.com/help_ebook/html/functions_4.htm)
+  - and this image of a [collection of curve functions](https://www.flickr.com/photos/kynd/9546075099/)
 
 ### providers
 

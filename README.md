@@ -1,5 +1,5 @@
 # piccolo
-piccolo : /ˈpɪkəloʊ/ : ![audio](https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Speaker_Icon.svg/16px-Speaker_Icon.svg.png)[audio](https://www.vocabolaudio.com/it/piccolo) : small, little; as in "piccolo mondo" (little world), or "[Piccolo Teatro di Milano](https://en.wikipedia.org/wiki/Piccolo_Teatro_(Milan))"
+piccolo : /ˈpɪkəloʊ/ : ![](https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Speaker_Icon.svg/16px-Speaker_Icon.svg.png) [audio](https://www.vocabolaudio.com/it/piccolo) : small, little; as in "piccolo mondo" (little world), or "[Piccolo Teatro di Milano](https://en.wikipedia.org/wiki/Piccolo_Teatro_(Milan))"
 
 ## motivation
 [piccolo](https://github.com/landru27/piccolo) is a 3D 6DoF engine for modeling a small world.  I intend to use piccolo as the display engine for projects of my own, and I humbly offer it to the world as a starting point for others' projects.
@@ -13,7 +13,7 @@ As well, a capable display environment can present art more directly, as a fine 
 Thus, my motivation is to provide myself and, perhaps, the wider world, a way to produce a wide variety of practical and creative works which call for 3D display.
 
 ## community
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
 
 Contributions are welcome!  I am currently adding core features.  I have some specific plans for implementing these features, and I hope to proceed rapidly.  Still, I welcome contributions.  Bugfixes are always welcome, as are optimizations.  I am also eager to see in what directions others take this work.  If you do fork this project and improve it, please consider contributing those improvements as PRs back to this project as well.
 

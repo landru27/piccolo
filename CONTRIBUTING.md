@@ -8,7 +8,7 @@ This project and everyone participating in it is governed by our [code of conduc
 When contibuting anything to this project, you expressly affirm the [Developer Certificate of Origin](../main/DCO.md).  We use the common DCO from <https://developercertificate.org/> but in case of any difference, the version in this repository prevails.  `git` commits must include a `Signed-off-by` line at the end of the commit message.  This can be greatly simplified with the `--signoff` command line option, but of course can be added by hand or any other way that results in an identical outcome.
 
 ### license
-All contributions would become part of the `piccolo` project, licensed under [MPLv2](http://mozilla.org/MPL/2.0/).
+All contributions would become part of the `piccolo` project, licensed under [MPLv2](../main/LICENSE).
 
 ### areas for contribution
 1. bug reports

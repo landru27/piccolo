@@ -1,0 +1,135 @@
+html {
+  text-align: center;
+}
+
+body {
+  color: #000000;
+  background-color: #eeeeee;
+  margin: 8px 8px 8px 8px;
+  font-family: Verdana, Sans-serif;
+  font-size: 1em;
+  text-align: center;
+}
+
+a {
+  padding: 1px 3px 1px 3px;
+  color: #268bd2;
+  text-decoration: none;
+}
+a:link {
+}
+a:hover {
+  color: #ffffff;
+  background-color: #268bd2;
+  text-decoration: none;
+}
+a:active {
+  color: #ffffff;
+  background-color: #268bd2;
+  text-decoration: none;
+}
+a:visited {
+}
+.current {
+  color: #ffffff;
+  background-color: #268bd2;
+  text-decoration: none;
+}
+a.nohighlight:hover {
+  background-color: #ffffff;
+}
+
+#container {
+  width: 864px;
+  float: none;
+  background-color: #ffffff;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 0px;
+  text-align: left;
+  border-top: 4px solid #268bd2;
+  border-bottom: 4px solid #268bd2;
+}
+
+#page {
+  background-color: #ffffff;
+  margin-left: 32px;
+  margin-right: 32px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+h1 {
+  font-size: 1.6em;
+  font-style: normal;
+  font-weight: normal;
+  padding: 0px;
+  margin: 0px 0px 16px 0px;
+}
+
+h2 {
+  font-size: 1.4em;
+  font-style: normal;
+  font-weight: normal;
+  padding: 0px;
+  margin: 0px 0px 16px 0px;
+}
+
+h3 {
+  font-size: 1.2em;
+  font-style: normal;
+  font-weight: normal;
+  padding: 0px;
+  margin: 0px 0px 16px 0px;
+}
+
+img {
+  border-width: 0px;
+}
+
+.image {
+  border-style: solid;
+  border-color: #657b83;
+  border-width: 1px;
+  padding: 8px;
+}
+
+#header {
+  padding: 2px 2px 2px 2px;
+  border-bottom: 4px solid #268bd2;
+}
+
+#header h1 {
+  font-size: 1.8em;
+}
+
+.demoitem {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #268bd2;
+}
+
+.demoitemimage {
+  float: right;
+  margin: 0px 0px 8px 8px;
+  padding: 4px;
+  width: 258px;
+  height: 130px;
+}
+
+.demoitemimage img {
+  display: block;
+  margin: auto;
+  padding: 0px;
+}
+
+#footer {
+  clear: both;
+  margin-bottom: 32px;
+  border-top: 1px solid #657b83;
+  color: #93a1a1;
+  line-height: 1.4em;
+  font-size: .8em;
+}

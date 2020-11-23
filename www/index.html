@@ -1,0 +1,47 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>piccolo demonstrator site</title>
+    <link rel="stylesheet" href="css/site.css" type="text/css"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="icon" type="image/png" href="img/favicon.ico"/>
+  </head>
+
+  <body>
+    <div id="container">
+      <div id="page">
+
+        <div id="header">
+          <h1>piccolo</h1>
+        </div>
+
+        <div class="demoitem">
+          <h1>Demo One</h1>
+          <span class="demoitemimage">
+            <img src="img/basic-icosahedron.png" alt="icosahedron"/>
+          </span>
+          <p>Demo One : an icosahedron</p>
+          <p>This demo application shows piccolo running at its most basic.  The displayed icosahedron is an icosphere, but at zero orders of tessellation -- in other words, none.  An engine like piccolo is hardly needed to display an icosahedron in three.js; indeed, there is a three.js class for just such a thing.  But as a demonstrator, this demo serves the purpose of showing a very basic piccolo instance.</p>
+        </div>
+
+        <div class="demoitem">
+          <h1>Demo Two</h1>
+          <span class="demoitemimage">
+            <img src="img/basic-icosahedron.png" alt="icosahedronJanus"/>
+          </span>
+          <p>Demo Two : an icosphere with other polyhedra orbiting</p>
+          <p>This demo is more involved than the first one.  Here, the piccolo world has 6 levels of tessellation.  In addition, this demo universe has entities in addition to the piccolo world itself.  This demonstrates the separation between piccolo as an engine for modeling a small world and the other things that might occupy that world. </p>
+        </div>
+
+        <div id="footer">
+          <p><a href="https://github.com/landru27/piccolo">GitHub repo</a></p>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

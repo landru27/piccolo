@@ -42,4 +42,4 @@ This project has these external dependencies, not licensed for re-distribution:
 ## license
 This project is published under the [Mozilla Public License Version 2.0 - MPLv2](../main/LICENSE).
 
-The favicon and basic icosahedron image in the demonstrator sites are &copy; [User:DTR](https://commons.wikimedia.org/wiki/User:DTR) / [Wikimedia Commons](https://commons.wikimedia.org/) / [CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en)
+The favicon and basic icosahedron image in the demonstrator sites are adapted from the icosahedron SVG on [the icosahedron Wikipedia page](https://en.wikipedia.org/wiki/Icosahedron), which is &copy; [User:DTR](https://commons.wikimedia.org/wiki/User:DTR) / [Wikimedia Commons](https://commons.wikimedia.org/) / [CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en)

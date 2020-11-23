@@ -24,6 +24,7 @@ see [CREDITS](../main/CREDITS.md) for the main credits page
 - [Harry Alisavakis, Technically Art](https://halisavakis.com/category/technically-art/)
 - [From forest to desert](http://creativejs.com/2011/09/forest-to-desert/index.html)
 - [Spiders!](http://creativejs.com/2011/08/spiders/index.html)
+- [Short Trip](https://alexanderperrin.com.au/paper/shorttrip/)
 
 #### research
 - [Flexible Muscle-Based Locomotion for Bipedal Creatures](https://www.youtube.com/watch?v=pgaEE27nsQw)

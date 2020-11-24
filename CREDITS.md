@@ -21,7 +21,7 @@ The author and main (so far, only) contributor to [piccolo](https://github.com/l
   - [Hexagonal Grids](https://www.redblobgames.com/grids/hexagons/)
   - [Wraparound hexagon tile maps on a sphere](https://www.redblobgames.com/x/1640-hexagon-tiling-of-sphere/)
   - [Blobs in Games](http://simblob.blogspot.com/)
-- Antonio Hernández Bejarano : **3D Game Development** with **LWJGLv3** - [GitBook](https://legacy.gitbook.com/@lwjglgamedev); [GitHub](https://github.com/lwjglgamedev/lwjglbook)
+- Antonio Hernández Bejarano : **3D Game Development** with **LWJGLv3** - [GitBook](https://legacy.gitbook.com/@lwjglgamedev) - [GitHub](https://github.com/lwjglgamedev/lwjglbook)
 - Catlike Coding : **Unity** and **shader** tutorials - [Patreon](https://www.patreon.com/catlikecoding)
 - Brackeys : tutorials about various aspects of **game development** in **Unity** - [YouTube](https://www.youtube.com/channel/UCYbK_tjZ2OrIZFBvU6CCMiA) - [Patreon](https://www.patreon.com/brackeys)
 - quill18creates : tutorials about various aspects of **game programming** in **Unity** - [YouTube](https://www.youtube.com/channel/UCPXOQq7PWh5OdCwEO60Y8jQ) - [Patreon](https://www.patreon.com/quill18creates)

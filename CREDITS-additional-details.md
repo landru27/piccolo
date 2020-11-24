@@ -36,6 +36,7 @@ see [CREDITS](../main/CREDITS.md) for the main credits page
 - [TerraVox](http://sandermeessen.weebly.com/terravox.html)
 - [Voxel Tools for Godot](https://github.com/Zylann/godot_voxel)
 - [Cube Engine v1.0](https://nurgak.github.io/Cube-engine/)
+- [Galaxia – Real-Time Procedural Universe Engine](https://dexyfex.com/) - [dexyfex YouTube](https://www.youtube.com/user/dexyfexx/videos)
 - [Tesseract](https://mevedia.com/projects/tesseract)
 - [The BananaBread Engine](https://github.com/kripken/BananaBread)
 

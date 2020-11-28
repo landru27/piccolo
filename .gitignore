@@ -38,3 +38,6 @@ node_modules/
 .env.test
 
 # jest
+
+# bundles
+dist/

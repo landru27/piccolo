@@ -62,38 +62,11 @@ a.nohighlight:hover {
 }
 
 h1 {
-  font-size: 1.6em;
-  font-style: normal;
-  font-weight: normal;
-  padding: 0px;
-  margin: 0px 0px 16px 0px;
-}
-
-h2 {
-  font-size: 1.4em;
-  font-style: normal;
-  font-weight: normal;
-  padding: 0px;
-  margin: 0px 0px 16px 0px;
-}
-
-h3 {
   font-size: 1.2em;
   font-style: normal;
   font-weight: normal;
   padding: 0px;
   margin: 0px 0px 16px 0px;
-}
-
-img {
-  border-width: 0px;
-}
-
-.image {
-  border-style: solid;
-  border-color: #657b83;
-  border-width: 1px;
-  padding: 8px;
 }
 
 #header {
@@ -105,24 +78,15 @@ img {
   font-size: 1.8em;
 }
 
+code {
+  background-color: #e8e8e8;
+  font-size: 1.1em;
+}
+
 .demoitem {
   padding-top: 16px;
   padding-bottom: 16px;
   border-bottom: 1px solid #268bd2;
-}
-
-.demoitemimage {
-  float: right;
-  margin: 0px 0px 8px 8px;
-  padding: 4px;
-  width: 258px;
-  height: 130px;
-}
-
-.demoitemimage img {
-  display: block;
-  margin: auto;
-  padding: 0px;
 }
 
 #footer {

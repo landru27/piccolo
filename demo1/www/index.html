@@ -1,14 +1,13 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>piccolo demonstrator site</title>
-    <link rel="stylesheet" href="css/site.css" type="text/css"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-    <link rel="icon" type="image/png" href="img/favicon.ico"/>
+    <link rel="icon" type="image/png" sizes="96x96" href="/img/favicon-96x96.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png"/>
+    <link rel="icon" type="image/png" href="/img/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/css/site.css"/>
   </head>
 
   <body>
@@ -20,25 +19,31 @@
         </div>
 
         <div class="demoitem">
-          <h1>Demo One</h1>
-          <span class="demoitemimage">
-            <img src="img/basic-icosahedron.png" alt="icosahedron"/>
-          </span>
-          <p>Demo One : an icosahedron</p>
-          <p>This demo application shows piccolo running at its most basic.  The displayed icosahedron is an icosphere, but at zero orders of tessellation -- in other words, none.  An engine like piccolo is hardly needed to display an icosahedron in three.js; indeed, there is a three.js class for just such a thing.  But as a demonstrator, this demo serves the purpose of showing a very basic piccolo instance.</p>
+          <h1>development : unbundled piccolo client</h1>
+          <p>During development, the <code>piccolo</code> client is made available via <a href="https://www.snowpack.dev/"><code>snowpack</code></a> in an unbundled form.  This greatly speeds the development lifecycle, since source code changes do not need to be followed by build and publish steps.</p>
+          <p><a href="http://localhost:8080/">piccolo client development site</a></p>
         </div>
 
         <div class="demoitem">
-          <h1>Demo Two</h1>
-          <span class="demoitemimage">
-            <img src="img/basic-icosahedron.png" alt="icosahedronJanus"/>
-          </span>
-          <p>Demo Two : an icosphere with other polyhedra orbiting</p>
-          <p>This demo is more involved than the first one.  Here, the piccolo world has 6 levels of tessellation.  In addition, this demo universe has entities in addition to the piccolo world itself.  This demonstrates the separation between piccolo as an engine for modeling a small world and the other things that might occupy that world. </p>
+          <h1>development : local piccolo server</h1>
+          <p>The <code>piccolo</code> server is &#x1F527; under construction &#x1F529;</p>
+          <p>These links access select <code>piccolo</code> server endpoints in the way the client would.  This serves mainly to manually and visually verify that the server is up and returning data.</p>
+          <p>
+            <a href="http://localhost:8880/">piccolo server development site</a><br />
+            <a href="http://localhost:8880/worldinfo">piccolo server development site - world info</a><br />
+            <a href="http://localhost:8880/playerinfo">piccolo server development site - player info</a><br />
+          </p>
+        </div>
+
+        <div class="demoitem">
+          <h1>demo one : bundled piccolo client and cohosted &#x1F527; piccolo server &#x1F529;</h1>
+          <p>Deploy the <code>piccolo</code> client and server to the same host as this website is deployed for a functioning demonstrator application.</p>
+          <p><a href="/html/piccolo-client.html">piccolo demonstration</a></p>
         </div>
 
         <div id="footer">
           <p><a href="https://github.com/landru27/piccolo">GitHub repo</a></p>
+          <p>The basic icosahedron image used for the favicon and elsewhere in the demonstrator sites is adapted from the icosahedron SVG on <a href="https://en.wikipedia.org/wiki/Icosahedron">the icosahedron Wikipedia page</a>, which is &copy; <a href="https://commons.wikimedia.org/wiki/User:DTR">User:DTR</a> / <a href="https://commons.wikimedia.org/">Wikimedia Commons</a> / <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-3.0</a>.
         </div>
 
       </div>

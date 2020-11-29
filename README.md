@@ -30,6 +30,9 @@ This work has benefited from the work of others from whom I [learned and drew in
 * **the Before Time** : lots of small projects, a great many failures, some successes; in other words, learning
 * **November, 2020** : starting out
 
+## installation
+See the [installation notes](../main/INSTALL.md)
+
 ## dependencies
 This project makes use of the following principle libraries:
 

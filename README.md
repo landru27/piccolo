@@ -6,7 +6,7 @@ piccolo : /ˈpɪkəloʊ/ : ![](https://upload.wikimedia.org/wikipedia/commons/th
 
 My first project will be an interactive environment where people can learn to program.  I also have a long-running desire to create the kind of exploration and survival game that I would enjoy playing.  And, I hope to use piccolo as a visualization tool.
 
-In addition to practical uses, software is a medium for art.  Mathematicians already know that there is deep beauty in numbers, and programmers already know that there is deep beauty in algorithms.  Visualization can help bring these truths and this beauty to the surface, for those outside these fields.  Think of images of [the Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set), or [the Julia set](https://en.wikipedia.org/wiki/Julia_set).  In addition to this aspect, software can be just the same as the painter's brush or the sculptor's chisel.  Software can be utilized to create something expressive, something intended to resonate with others.  Just as writing and film are two different art forms each with their own expressive modes and techniques (compare, for example, _2001: A Space Odyssey_ as the book and the film), software offers yet other modes and techniques.  Logic, randomness, interaction, state-change, repetition, emergent behavior, and other facets of running software offer a new kind of palette and a new kind of medium for expression, reflection, celebration, connection, and all that art provides for us as humans, as people.  Equally so, the assets that comprise a simulated environment, from 3D models to backdrops to soundscapes, are works of fine art in their own right, and a display engine provides a place to exhibit them.
+In addition to such practical uses, software is a medium for art.  This is as true for visualizations such as producing an image of [the Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set), as it is for visualizations of complex, emergent phenomena such as [Craig Reynolds' boids](http://www.red3d.com/cwr/boids/), as it is for art created with software tools and/or as [digital works](https://codepen.io/louflan/full/JjGVbjY), such as CG landscapes, 3D models and soundscapes, or interactive [instruments](https://www.google.com/logos/doodles/2017/fischinger/fischinger17.9.html?hl=en) or [novels](https://en.wikipedia.org/wiki/Life_Is_Strange).
 
 Thus, my motivation is to provide myself and, perhaps, the wider world, a way to produce a wide variety of practical and creative works which call for 3D display.
 
@@ -31,15 +31,24 @@ This work has benefited from the work of others from whom I [learned and drew in
 * **November, 2020** : starting out
 
 ## dependencies
-This project makes use of the following libraries, licensed for distribution with this project:
+This project makes use of the following principle libraries:
 
-* [three.js](https://threejs.org/) - MIT License
+* [three.js](https://threejs.org/)
+* [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/)
+* [eslint](https://eslint.org/)
+* [jest](https://jestjs.io/)
+* [snowpack](https://www.snowpack.dev/)
+* [webpack](https://webpack.js.org/)
 
-This project has these external dependencies, not licensed for re-distribution:
+This project has these external dependencies:
 
 * [JavaScript](https://en.wikipedia.org/wiki/JavaScript); "JavaScript" is a [trademark](http://tarr.uspto.gov/servlet/tarr?regser=serial&entry=75026640) of Oracle Corporation in the United States.
 
 ## license
 This project is published under the [Mozilla Public License Version 2.0 - MPLv2](../main/LICENSE).
+
+Portions are published by their authors under the [MIT License](https://opensource.org/licenses/MIT).  Such portions are noted as such in the source code, per the MIT licence.
+
+A number of libraries used by this project are installed from public sources by `npm` during installation of `piccolo`, and thus are not redistributed as part of this project, but nevertheless contribute in important ways to the functionality of this project.
 
 The favicon and basic icosahedron image in the demonstrator sites are adapted from the icosahedron SVG on [the icosahedron Wikipedia page](https://en.wikipedia.org/wiki/Icosahedron), which is &copy; [User:DTR](https://commons.wikimedia.org/wiki/User:DTR) / [Wikimedia Commons](https://commons.wikimedia.org/) / [CC-BY-SA-3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en)

@@ -18,6 +18,8 @@ see [CREDITS](../main/CREDITS.md) for the main credits page
 - [Total Tank Simulator](https://store.steampowered.com/app/674500/Total_Tank_Simulator/)
 - [Harvest Moon: A Wonderful Life - review](https://www.youtube.com/watch?v=Qe24X44uoy4)
 - [Space Engineers Trailer 2014](https://www.youtube.com/watch?v=O_UXKce9-OY&t=41s)
+- [screeps](https://screeps.com/)
+- [DragonScript Arena](https://dragonscriptarena.com/) - [on itch.io](https://secretsciencelab.itch.io/dragonscriptarena)
 
 #### artwork
 - [Home is Where One Starts ...](https://homeiswhereonestarts.wordpress.com/)
@@ -25,9 +27,14 @@ see [CREDITS](../main/CREDITS.md) for the main credits page
 - [From forest to desert](http://creativejs.com/2011/09/forest-to-desert/index.html)
 - [Spiders!](http://creativejs.com/2011/08/spiders/index.html)
 - [Short Trip](https://alexanderperrin.com.au/paper/shorttrip/)
+- [Planets by Earth](https://kodub.itch.io/planets-by-earth)
 
 #### research
 - [Flexible Muscle-Based Locomotion for Bipedal Creatures](https://www.youtube.com/watch?v=pgaEE27nsQw)
+
+#### articles
+- [Gaffer On Games](https://gafferongames.com/)
+- [Webpack from Nothing](https://what-problem-does-it-solve.com/webpack/intro.html)
 
 #### projects
 - [3D Hartwig chess set](https://github.com/juliangarnier/3D-Hartwig-chess-set)
@@ -39,6 +46,7 @@ see [CREDITS](../main/CREDITS.md) for the main credits page
 - [Galaxia – Real-Time Procedural Universe Engine](https://dexyfex.com/) - [dexyfex YouTube](https://www.youtube.com/user/dexyfexx/videos)
 - [Tesseract](https://mevedia.com/projects/tesseract)
 - [The BananaBread Engine](https://github.com/kripken/BananaBread)
+- [Bowdown - archery MMO](https://github.com/jacklaplante/bowdown)
 
 #### presentations
 - [Low Poly Modeling: Style Through Economy](https://www.youtube.com/watch?v=H1oNuKChsdU)

@@ -47,7 +47,7 @@ For deployment (i.e., beyond development), you will also need a web server from 
 * [lighttpd](https://redmine.lighttpd.net/projects/lighttpd)
 * [serverz](https://greggman.github.io/servez/)
 * [webfs](https://linux.bytesex.org/misc/webfs.html)
-* [twisted](http://twistedmatrix.com/) are other minimal web server choices
+* [twisted](http://twistedmatrix.com/)
 * Node.js, Python, Ruby, PHP, and Go all have a way to run a barebones HTTP server
   * if you use Node.js for this, please do note that you should do so in a separate, non-`piccolo` nodejs directory
 

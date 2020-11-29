@@ -34,6 +34,7 @@ see [CREDITS](../main/CREDITS.md) for the main credits page
 
 #### articles
 - [Gaffer On Games](https://gafferongames.com/)
+- [Webpack from Nothing](https://what-problem-does-it-solve.com/webpack/intro.html)
 
 #### projects
 - [3D Hartwig chess set](https://github.com/juliangarnier/3D-Hartwig-chess-set)

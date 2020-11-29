@@ -31,7 +31,7 @@ This work has benefited from the work of others from whom I [learned and drew in
 * **November, 2020** : starting out
 
 ## installation
-See the [installation notes](../main/INSTALL.md)
+See the [installation notes](../main/INSTALL.md).
 
 ## dependencies
 This project makes use of the following principle libraries:

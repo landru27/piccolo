@@ -1,3 +1,43 @@
 ## notes-to-self, not really part of the project
-TODO
 xfer/*
+
+## OSes
+# MacOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+## nodejs
+# logs and diagnostics
+logs
+*.log
+npm-debug.log*
+lerna-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# npm
+node_modules/
+.npm
+*.tgz
+
+# eslint cache
+.eslintcache
+
+# dotenv environment variables file
+.env
+.env.test
+
+# jest
+
+# bundles
+dist/

@@ -4,6 +4,7 @@
   "description": "piccolo client",
   "main": "main.js",
   "dependencies": {
+    "ecsy": "^0.4.2",
     "three": "^0.123.0"
   },
   "devDependencies": {

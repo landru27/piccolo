@@ -36,8 +36,9 @@ See the [installation notes](../main/INSTALL.md).
 ## dependencies
 This project makes use of the following principle libraries:
 
-* [three.js](https://threejs.org/)
 * [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/)
+* [three.js](https://threejs.org/)
+* [ecsy](https://ecsy.io/)
 * [eslint](https://eslint.org/)
 * [jest](https://jestjs.io/)
 * [snowpack](https://www.snowpack.dev/)

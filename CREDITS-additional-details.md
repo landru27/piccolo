@@ -1,5 +1,22 @@
 see [CREDITS](../main/CREDITS.md) for the main credits page
 
+### additional tutorials
+- [Godot's shading language tutorial](https://docs.godotengine.org/en/3.0/tutorials/shading/shading_language.html)
+- [creativeJS Tutorials](http://creativejs.com/tutorials/index.html)
+- [Dual Contouring Tutorial](http://www.boristhebrave.com/2018/04/15/dual-contouring-tutorial/)
+- [Catlike Coding](https://www.patreon.com/catlikecoding)
+- quill18creates : [YouTube](https://www.youtube.com/channel/UCPXOQq7PWh5OdCwEO60Y8jQ) and [Patreon](https://www.patreon.com/quill18creates)
+- [20 Impressive Examples for Learning WebGL with Three.js](https://tutorialzine.com/2013/09/20-impressive-examples-for-learning-webgl-with-three-js)
+
+### more Amit Patel / Red Blob Games sites
+- [Amit’s Stanford University home page](http://www-cs-students.stanford.edu/~amitp/)
+- [Amit’s Game Programming Information](http://www-cs-students.stanford.edu/~amitp/gameprog.html)
+- [Amit’s A* Pages](http://theory.stanford.edu/~amitp/GameProgramming/)
+- [Amit’s Thoughts on Grids](http://www-cs-students.stanford.edu/~amitp/game-programming/grids/)
+- [Hexagonal Grids](https://www.redblobgames.com/grids/hexagons/)
+- [Wraparound hexagon tile maps on a sphere](https://www.redblobgames.com/x/1640-hexagon-tiling-of-sphere/)
+- [Blobs in Games](http://simblob.blogspot.com/)
+
 ### inspiration
 
 #### boids by Craig Reynolds
@@ -65,6 +82,7 @@ see [CREDITS](../main/CREDITS.md) for the main credits page
 - [Triangular tiles](https://github.com/mhwombat/grid/wiki/Triangular-tiles)
 - [threejs dynamic sky rendering](https://derschmale.com/lab/doodles/dynamicsky/build/)
 - [threejs examples - sky and sun shader](https://threejs.org/examples/#webgl_shaders_sky)
+- [threejs examples - pointerlock controls](https://threejs.org/examples/misc_controls_pointerlock.html)
 - [Coding Adventure: Procedural Moons and Planets](https://www.youtube.com/watch?v=lctXaT9pxA0)
 - [Coding Adventure: Atmosphere](https://www.youtube.com/watch?v=DxfEbulyFcY)
 - [threejs docs - IcosahedronGeometry](https://threejs.org/docs/#api/en/geometries/IcosahedronGeometry)

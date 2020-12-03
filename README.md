@@ -29,6 +29,7 @@ This work has benefited from the work of others from whom I [learned and drew in
 ## timeline
 * **the Before Time** : lots of small projects, a great many failures, some successes; in other words, learning
 * **November, 2020** : starting out
+* **December, 2020** : minimal demo world; incorporating `ecsy` for ECS functionality
 
 ## installation
 See the [installation notes](../main/INSTALL.md).

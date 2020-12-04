@@ -5,7 +5,7 @@ import { setDefaultIfNoValue } from './utility/comparison.js';
 
 import { Object3D, Vector3, Color } from 'three';
 import { Clock, WebGLRenderer, Scene } from 'three';
-import { AmbientLight, HemisphereLight, DirectionalLight } from 'three';
+import { AmbientLight, HemisphereLight, DirectionalLight, Fog } from 'three';
 import { PerspectiveCamera } from 'three';
 import { KeyUpAndDownControls } from './controls/KeyUpAndDownControls.js';
 import { PointerLockControls } from './controls/PointerLockControls.js';

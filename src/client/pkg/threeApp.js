@@ -3,9 +3,12 @@
 
 import { setDefaultIfNotSet } from './jsm/utility/comparison.js';
 
-import { Object3D, Color } from 'three';
+import { Object3D, Vector3, Color } from 'three';
 import { Clock, WebGLRenderer, Scene } from 'three';
 import { AmbientLight, HemisphereLight, DirectionalLight } from 'three';
+import { PerspectiveCamera } from 'three';
+import { KeyUpAndDownControls } from './jsm/controls/KeyUpAndDownControls.js';
+import { PointerLockControls } from './jsm/controls/PointerLockControls.js';
 
 
 ////////////////////////////////////////////////////////////////
@@ -17,8 +20,16 @@ export class ThreeApp {
         this.devicePixelRatio = setDefaultIfNotSet(options.devicePixelRatio, 1);
         this.viewWidth = setDefaultIfNotSet(options.viewWidth, 256);
         this.viewHeight = setDefaultIfNotSet(options.viewHeight, 256);
-        this.ClearColor = setDefaultIfNotSet(options.ClearColor, 0x000000);
-        this.Background = setDefaultIfNotSet(options.Background, 0x000000);
+        this.clearColor = setDefaultIfNotSet(options.clearColor, 0x000000);
+        this.background = setDefaultIfNotSet(options.background, 0x000000);
+        this.fieldOfView = setDefaultIfNotSet(options.fieldOfView, 45);
+        this.aspectRatio = setDefaultIfNotSet(options.aspectRatio, (this.viewWidth / this.viewHeight));
+        this.nearClippingPlane = setDefaultIfNotSet(options.nearClippingPlane, 0.1);
+        this.farClippingPlane = setDefaultIfNotSet(options.farClippingPlane, 1000);
+        this.cameraPosition = setDefaultIfNotSet(options.cameraPosition, new Vector3(3, 0, 6));
+        this.cameraLookAt = setDefaultIfNotSet(options.cameraLookAt, new Vector3(0, 0, 0));
+        this.keyboardControlDOMElement = setDefaultIfNotSet(options.keyboardControlDOMElement, document);
+        this.pointerControlDOMElement = setDefaultIfNotSet(options.pointerControlDOMElement, document.body);
 
         // timing clock
         this.clock = new Clock();
@@ -27,29 +38,49 @@ export class ThreeApp {
         this.renderer = new WebGLRenderer();
         this.renderer.setPixelRatio(this.devicePixelRatio);
         this.renderer.setSize(this.viewWidth, this.viewHeight);
-        this.renderer.setClearColor( this.ClearColor );
+        this.renderer.setClearColor(this.clearColor);
 
         // threejs scene
         this.scene = new Scene();
-        this.scene.background = new Color(this.Background);
-
-        // declare other instance variables
+        this.scene.background = new Color(this.background);
         this.ambientLight = null;
         this.hemisphereLight = null;
         this.directionalLights = [];
         this.distanceFog = null;
+
+        // user camera
+        this.camera = new PerspectiveCamera(this.fieldOfView, this.aspectRatio, this.nearClippingPlane, this.farClippingPlane);
+        this.camera.position.copy(this.cameraPosition);
+        this.camera.lookAt(this.cameraLookAt);
+
+        // user controls
+        this.keyboardControls = new KeyUpAndDownControls(this.keyboardControlDOMElement);
+        this.pointerControls = new PointerLockControls(this.camera, this.pointerControlDOMElement);
+        this.scene.add(this.pointerControls.getObject());
     }
 
     getRenderer() {
         return this.renderer;
     }
 
-    getDOMElement() {
-        return this.renderer.domElement;
-    }
-
     getScene() {
         return this.scene;
+    }
+
+    getCamera() {
+        return this.camera;
+    }
+
+    getPointerControls() {
+        return this.pointerControls;
+    }
+
+    getKeyboardControls() {
+        return this.keyboardControls;
+    }
+
+    getRenderDOMElement() {
+        return this.renderer.domElement;
     }
 
     setAmbientLighting(options) {
@@ -87,6 +118,21 @@ export class ThreeApp {
 
         this.distanceFog = new Fog(color, near, far);
         this.scene.add(this.distanceFog);
+    }
+
+    resizeViewport(width, height) {
+        this.viewWidth = width;
+        this.viewHeight = height;
+        this.aspectRatio = this.viewWidth / this.viewHeight;
+
+        this.camera.aspect = this.aspectRatio;
+        this.camera.updateProjectionMatrix();
+
+        this.renderer.setSize(this.viewWidth, this.viewHeight);
+    }
+
+    render() {
+        this.renderer.render(this.scene, this.camera);
     }
 }
 

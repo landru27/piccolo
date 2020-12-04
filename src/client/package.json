@@ -17,6 +17,7 @@
   "type": "module",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-detail": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose",
     "devsite": "snowpack dev",
     "build": "webpack --config webpack.config.cjs",
     "prettier": "prettier --check \"pkg/**/*.js\""

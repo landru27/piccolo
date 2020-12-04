@@ -6,12 +6,12 @@ afterEach(() => console.log('1 - afterEach'));
 
 test('', () => console.log('1 - test'));
 
-describe('Scoped / Nested block', () => {
+describe('order of execution', () => {
     beforeAll(() => console.log('2 - beforeAll'));
     afterAll(() => console.log('2 - afterAll'));
 
     beforeEach(() => console.log('2 - beforeEach'));
     afterEach(() => console.log('2 - afterEach'));
 
-    test('', () => console.log('2 - test'));
+    test('order of execution', () => console.log('2 - test'));
 });

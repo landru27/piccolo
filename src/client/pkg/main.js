@@ -1,11 +1,9 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { Clock, WebGLRenderer, Scene, PerspectiveCamera } from 'three';
-import { AmbientLight, HemisphereLight, DirectionalLight } from 'three';
-import { Mesh, MeshBasicMaterial, MeshPhongMaterial, Color } from 'three';
-import { PointerLockControls } from './jsm/controls/PointerLockControls.js';
-import { Vector2, Vector3 } from 'three';
+import { ThreeApp } from './threeApp.js';
+
+import { Mesh, MeshPhongMaterial, Color, Vector3 } from 'three';
 import { BoxBufferGeometry } from 'three';
 import { World } from 'ecsy';
 
@@ -19,8 +17,8 @@ const container = document.querySelector('#canvas-container');
 let viewWidth = container.clientWidth;
 let viewHeight = container.clientHeight;
 
-const blocker = document.getElementById( 'info-overlay' );
-const instructions = document.getElementById( 'info' );
+const infoOverlay = document.getElementById( 'info-overlay' );
+const infoDetails = document.getElementById( 'info' );
 
 
 ////////////////////////////////////////////////////////////////
@@ -40,147 +38,58 @@ let world = new World();
 
 
 ////////////////////////////////////////////////////////////////
-////////  initialize threejs
+////////  initialize three.js
 
-// timing clock
-const clock = new Clock();
+const threeApp = new ThreeApp({
+    devicePixelRatio: devicePixelRatio,
+    viewWidth: viewWidth,
+    viewHeight: viewHeight,
+    clearColor: 0x000000,
+    background: new Color('skyblue'),
+    fieldOfVision: 35,
+    aspectRatio: viewWidth / viewHeight,
+    nearClippingPlane: 0.1,
+    farClippingPlane: 100,
+    cameraPosition: new Vector3(1, 1, 10),
+    cameraLookAt: new Vector3(0, 0, 0),
+    keyboardControlDOMElement: document,
+    pointerControlDOMElement: document.body,
+});
 
-// WebGL renderer
-const renderer = new WebGLRenderer();
-renderer.setPixelRatio(devicePixelRatio);
-renderer.setSize(viewWidth, viewHeight);
-renderer.setClearColor( 0x000000 );
-container.append(renderer.domElement);
+threeApp.setAmbientLighting({
+    color: 0x7f7f7f,
+});
 
-// scene
-const scene = new Scene();
-scene.background = new Color('skyblue');
-
-// ambient lighting
-const ambientLight = new AmbientLight( 0xcccccc );
-scene.add( ambientLight );
-
-// directional lighting -- will likely move to ECS
-const directionalLight = new DirectionalLight( 0xffffff, 2 );
-directionalLight.position.set( 1, 1, 0.5 ).normalize();
-scene.add( directionalLight );
-
-// dome lighting
-// const hemisphereLight = new HemisphereLight( 0xeeeeff, 0x777788, 0.75 );
-// light.position.set( 0.5, 1, 0.75 );
-// scene.add( light );
-
-// distance fog
-// scene.fog = new Fog( 0xffffff, 0, 750 );
-
+threeApp.addDirectionalLighting({
+   color: 0xffffff,
+   intensity: 1,
+   position: new Vector3(1, 2, 3),
+});
 
 ////////////////////////////////////////////////////////////////
-////////  player
+////////  connect three.js to the browser page
 
-// player camera
-const fov = 35;
-const aspect = viewWidth / viewHeight;
-const near = 0.1;
-const far = 100;
-const camera = new PerspectiveCamera(fov, aspect, near, far);
-camera.position.set(1, 1, 10);
-camera.lookAt(0, 0, 0);
+container.append(threeApp.getRenderDOMElement());
 
-// accommodate browser resizing
 window.addEventListener( 'resize', onWindowResize, false );
 function onWindowResize() {
     viewWidth = container.clientWidth;
     viewHeight = container.clientHeight;
 
-    camera.aspect = viewWidth / viewHeight;
-    camera.updateProjectionMatrix();
-
-    renderer.setSize( viewWidth, viewHeight );
+    threeApp.resizeViewport();
 }
 
-// player controls -- will move to ECS
-let controls;
-let moveForward = false;
-let moveBackward = false;
-let moveLeft = false;
-let moveRight = false;
-let moveJump = false;
-
-const velocity = new Vector3();
-const direction = new Vector3();
-
-controls = new PointerLockControls( camera, document.body );
-instructions.addEventListener( 'click', function () {
-    controls.lock();
+infoDetails.addEventListener( 'click', function () {
+    threeApp.getPointerControls().lock();
 }, false );
-controls.addEventListener( 'lock', function () {
-    instructions.style.display = 'none';
-    blocker.style.display = 'none';
+threeApp.getPointerControls().addEventListener( 'lock', function () {
+    infoDetails.style.display = 'none';
+    infoOverlay.style.display = 'none';
 } );
-controls.addEventListener( 'unlock', function () {
-    blocker.style.display = 'block';
-    instructions.style.display = '';
+threeApp.getPointerControls().addEventListener( 'unlock', function () {
+    infoOverlay.style.display = 'block';
+    infoDetails.style.display = '';
 } );
-scene.add(controls.getObject());
-
-const onKeyDown = function (event) {
-    switch (event.keyCode) {
-        case 38: // up
-        case 87: // w
-            moveForward = true;
-            break;
-
-        case 37: // left
-        case 65: // a
-            moveLeft = true;
-            break;
-
-        case 40: // down
-        case 83: // s
-            moveBackward = true;
-            break;
-
-        case 39: // right
-        case 68: // d
-            moveRight = true;
-            break;
-
-        case 32: // space
-            moveJump = true;
-            break;
-    }
-};
-
-const onKeyUp = function (event) {
-    switch (event.keyCode) {
-        case 38: // up
-        case 87: // w
-            moveForward = false;
-            break;
-
-        case 37: // left
-        case 65: // a
-            moveLeft = false;
-            break;
-
-        case 40: // down
-        case 83: // s
-            moveBackward = false;
-            break;
-
-        case 39: // right
-        case 68: // d
-            moveRight = false;
-            break;
-
-        case 32: // space
-            moveJump = false;
-            break;
-    }
-};
-
-document.addEventListener( 'keydown', onKeyDown, false );
-document.addEventListener( 'keyup', onKeyUp, false );
 
 
 ////////////////////////////////////////////////////////////////
@@ -190,7 +99,7 @@ document.addEventListener( 'keyup', onKeyUp, false );
 const geometry = new BoxBufferGeometry(2, 2, 2);
 const material = new MeshPhongMaterial({color: 'green'});
 const cube = new Mesh(geometry, material);
-scene.add(cube);
+threeApp.getScene().add(cube);
 
 
 ////////////////////////////////////////////////////////////////
@@ -203,6 +112,8 @@ function animate() {
     const delta = (time - prevTime) / 1000;
     prevTime = time;
 
+    let controls = threeApp.getPointerControls();
+
     if (controls.isLocked === true) {
         // friction
         velocity.z -= velocity.z * Math.PI * delta;
@@ -211,17 +122,19 @@ function animate() {
         velocity.y -= 9.8 * 10.0 * delta;
 
         // movement input
-        direction.z = Number(moveForward) - Number(moveBackward);
-        direction.x = Number(moveRight) - Number(moveLeft);
+        let movement = threeApp.getKeyboardControls().getMovement();
+
+        direction.z = Number(movement.moveForward) - Number(movement.moveBackward);
+        direction.x = Number(movement.moveRight) - Number(movement.moveLeft);
         direction.normalize();
 
         // movement
-        if (moveForward || moveBackward) {
+        if (movement.moveForward || movement.moveBackward) {
             velocity.z -= direction.z * 40.0 * delta;
         }
         controls.moveForward(- velocity.z * delta);
 
-        if (moveLeft || moveRight) {
+        if (movement.moveLeft || movement.moveRight) {
             velocity.x -= direction.x * 40.0 * delta;
         }
         controls.moveRight(- velocity.x * delta);
@@ -231,16 +144,20 @@ function animate() {
             controls.getObject().position.y = 0;
             velocity.y = 0;
         }
-        if (moveJump) {
+        if (movement.moveJump) {
             velocity.y += 4;
         }
         controls.getObject().position.y += (velocity.y * delta);
     }
 
-    renderer.render( scene, camera );
+    threeApp.render();
 }
 
 let prevTime = performance.now();
+
+const velocity = new Vector3();
+const direction = new Vector3();
+
 animate();
 
 ////////////////////////////////////////////////////////////////

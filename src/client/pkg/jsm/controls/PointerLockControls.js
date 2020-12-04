@@ -115,7 +115,6 @@ var PointerLockControls = function (camera, domElement) {
 	};
 
 	this.connect();
-
 };
 
 PointerLockControls.prototype = Object.create(EventDispatcher.prototype);

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1, maximum-scale=1, initial-scale=1">
     <meta charset="utf-8">
 
     <title>piccolo demonstrator site</title>
@@ -14,11 +14,17 @@
   </head>
 
   <body>
-    <h1>piccolo demo site</h1>
-
-    <div id="scene-container">
-      <!-- the three.js <canvas> will be inserted here -->
+    <div id="info-overlay" class="fullwindow">
+      <div id="info" class="fullwindow">
+        <span style="font-size:36px">Click to begin</span>
+        <br>
+        <br>Move: WASD
+        <br>Look: MOUSE
+      </div>
     </div>
 
+    <div id="canvas-container" class="fullwindow">
+      <!-- the three.js <canvas> will be inserted here -->
+    </div>
   </body>
 </html>

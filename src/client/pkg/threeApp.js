@@ -1,14 +1,14 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { setDefaultIfNotSet } from './jsm/utility/comparison.js';
+import { setDefaultIfNotSet } from './utility/comparison.js';
 
 import { Object3D, Vector3, Color } from 'three';
 import { Clock, WebGLRenderer, Scene } from 'three';
 import { AmbientLight, HemisphereLight, DirectionalLight } from 'three';
 import { PerspectiveCamera } from 'three';
-import { KeyUpAndDownControls } from './jsm/controls/KeyUpAndDownControls.js';
-import { PointerLockControls } from './jsm/controls/PointerLockControls.js';
+import { KeyUpAndDownControls } from './controls/KeyUpAndDownControls.js';
+import { PointerLockControls } from './controls/PointerLockControls.js';
 
 
 ////////////////////////////////////////////////////////////////

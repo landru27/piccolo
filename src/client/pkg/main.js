@@ -61,9 +61,9 @@ threeApp.setAmbientLighting({
 });
 
 threeApp.addDirectionalLighting({
-   color: 0xffffff,
-   intensity: 1,
-   position: new Vector3(1, 2, 3),
+    color: 0xffffff,
+    intensity: 1,
+    position: new Vector3(1, 2, 3),
 });
 
 ////////////////////////////////////////////////////////////////

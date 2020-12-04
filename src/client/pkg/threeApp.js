@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { setDefaultIfNotSet } from './utility/comparison.js';
+import { setDefaultIfNoValue } from './utility/comparison.js';
 
 import { Object3D, Vector3, Color } from 'three';
 import { Clock, WebGLRenderer, Scene } from 'three';
@@ -17,19 +17,19 @@ import { PointerLockControls } from './controls/PointerLockControls.js';
 export class ThreeApp {
     constructor(options) {
         // use the provided or default values
-        this.devicePixelRatio = setDefaultIfNotSet(options.devicePixelRatio, 1);
-        this.viewWidth = setDefaultIfNotSet(options.viewWidth, 256);
-        this.viewHeight = setDefaultIfNotSet(options.viewHeight, 256);
-        this.clearColor = setDefaultIfNotSet(options.clearColor, 0x000000);
-        this.background = setDefaultIfNotSet(options.background, 0x000000);
-        this.fieldOfView = setDefaultIfNotSet(options.fieldOfView, 45);
-        this.aspectRatio = setDefaultIfNotSet(options.aspectRatio, (this.viewWidth / this.viewHeight));
-        this.nearClippingPlane = setDefaultIfNotSet(options.nearClippingPlane, 0.1);
-        this.farClippingPlane = setDefaultIfNotSet(options.farClippingPlane, 1000);
-        this.cameraPosition = setDefaultIfNotSet(options.cameraPosition, new Vector3(3, 0, 6));
-        this.cameraLookAt = setDefaultIfNotSet(options.cameraLookAt, new Vector3(0, 0, 0));
-        this.keyboardControlDOMElement = setDefaultIfNotSet(options.keyboardControlDOMElement, document);
-        this.pointerControlDOMElement = setDefaultIfNotSet(options.pointerControlDOMElement, document.body);
+        this.devicePixelRatio = setDefaultIfNoValue(options.devicePixelRatio, 1);
+        this.viewWidth = setDefaultIfNoValue(options.viewWidth, 256);
+        this.viewHeight = setDefaultIfNoValue(options.viewHeight, 256);
+        this.clearColor = setDefaultIfNoValue(options.clearColor, 0x000000);
+        this.background = setDefaultIfNoValue(options.background, 0x000000);
+        this.fieldOfView = setDefaultIfNoValue(options.fieldOfView, 45);
+        this.aspectRatio = setDefaultIfNoValue(options.aspectRatio, (this.viewWidth / this.viewHeight));
+        this.nearClippingPlane = setDefaultIfNoValue(options.nearClippingPlane, 0.1);
+        this.farClippingPlane = setDefaultIfNoValue(options.farClippingPlane, 1000);
+        this.cameraPosition = setDefaultIfNoValue(options.cameraPosition, new Vector3(3, 0, 6));
+        this.cameraLookAt = setDefaultIfNoValue(options.cameraLookAt, new Vector3(0, 0, 0));
+        this.keyboardControlDOMElement = setDefaultIfNoValue(options.keyboardControlDOMElement, document);
+        this.pointerControlDOMElement = setDefaultIfNoValue(options.pointerControlDOMElement, document.body);
 
         // timing clock
         this.clock = new Clock();
@@ -84,26 +84,26 @@ export class ThreeApp {
     }
 
     setAmbientLighting(options) {
-        let color = setDefaultIfNotSet(options.color, 0x7F7F7F);
-        let intensity = setDefaultIfNotSet(options.intensity, 1);
+        let color = setDefaultIfNoValue(options.color, 0x7F7F7F);
+        let intensity = setDefaultIfNoValue(options.intensity, 1);
 
         this.ambientLight = new AmbientLight(color, intensity);
         this.scene.add(this.ambientLight);
     }
 
     setHemisphereLighting(options) {
-        let skyColor = setDefaultIfNotSet(options.skyColor, 0xbbbbbb);
-        let groundColor = setDefaultIfNotSet(options.groundColor, 0x444444);
-        let intensity = setDefaultIfNotSet(options.intensity, 1);
+        let skyColor = setDefaultIfNoValue(options.skyColor, 0xbbbbbb);
+        let groundColor = setDefaultIfNoValue(options.groundColor, 0x444444);
+        let intensity = setDefaultIfNoValue(options.intensity, 1);
 
         this.hemisphereLight = new HemisphereLight(skyColor, groundColor, intensity);
         this.scene.add(this.hemisphereLight);
     }
 
     addDirectionalLighting(options) {
-        let color = setDefaultIfNotSet(options.color, 0x7F7F7F);
-        let intensity = setDefaultIfNotSet(options.intensity, 1);
-        let position = setDefaultIfNotSet(options.position, Object3D.DefaultUp);
+        let color = setDefaultIfNoValue(options.color, 0x7F7F7F);
+        let intensity = setDefaultIfNoValue(options.intensity, 1);
+        let position = setDefaultIfNoValue(options.position, Object3D.DefaultUp);
 
         let light = new DirectionalLight(color, intensity);
         light.position.copy(position).normalize();
@@ -112,9 +112,9 @@ export class ThreeApp {
     }
 
     setDistanceFog(options) {
-        let color = setDefaultIfNotSet(options.color, 0xcccccc);
-        let near = setDefaultIfNotSet(options.near, 300);
-        let far = setDefaultIfNotSet(options.far, 3000);
+        let color = setDefaultIfNoValue(options.color, 0xcccccc);
+        let near = setDefaultIfNoValue(options.near, 300);
+        let far = setDefaultIfNoValue(options.far, 3000);
 
         this.distanceFog = new Fog(color, near, far);
         this.scene.add(this.distanceFog);

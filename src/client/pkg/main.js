@@ -1,7 +1,9 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { Clock, WebGLRenderer, Scene, PerspectiveCamera } from 'three';
+import { ThreeApp } from './threeApp.js';
+
+import { PerspectiveCamera } from 'three';
 import { AmbientLight, HemisphereLight, DirectionalLight } from 'three';
 import { Mesh, MeshBasicMaterial, MeshPhongMaterial, Color } from 'three';
 import { PointerLockControls } from './jsm/controls/PointerLockControls.js';
@@ -19,8 +21,8 @@ const container = document.querySelector('#canvas-container');
 let viewWidth = container.clientWidth;
 let viewHeight = container.clientHeight;
 
-const blocker = document.getElementById( 'info-overlay' );
-const instructions = document.getElementById( 'info' );
+const infoOverlay = document.getElementById( 'info-overlay' );
+const infoDetails = document.getElementById( 'info' );
 
 
 ////////////////////////////////////////////////////////////////
@@ -42,37 +44,28 @@ let world = new World();
 ////////////////////////////////////////////////////////////////
 ////////  initialize threejs
 
-// timing clock
-const clock = new Clock();
+const threeApp = new ThreeApp({
+    devicePixelRatio: devicePixelRatio,
+    viewWidth: viewWidth,
+    viewHeight: viewHeight,
+    ClearColor: 0x000000,
+    Background: new Color('skyblue'),
+});
 
-// WebGL renderer
-const renderer = new WebGLRenderer();
-renderer.setPixelRatio(devicePixelRatio);
-renderer.setSize(viewWidth, viewHeight);
-renderer.setClearColor( 0x000000 );
-container.append(renderer.domElement);
+threeApp.setAmbientLighting({
+    color: 0x7f7f7f,
+});
 
-// scene
-const scene = new Scene();
-scene.background = new Color('skyblue');
+threeApp.addDirectionalLighting({
+   color: 0xffffff,
+   intensity: 1,
+   position: new Vector3(1, 2, 3),
+});
 
-// ambient lighting
-const ambientLight = new AmbientLight( 0xcccccc );
-scene.add( ambientLight );
+container.append(threeApp.getDOMElement());
 
-// directional lighting -- will likely move to ECS
-const directionalLight = new DirectionalLight( 0xffffff, 2 );
-directionalLight.position.set( 1, 1, 0.5 ).normalize();
-scene.add( directionalLight );
-
-// dome lighting
-// const hemisphereLight = new HemisphereLight( 0xeeeeff, 0x777788, 0.75 );
-// light.position.set( 0.5, 1, 0.75 );
-// scene.add( light );
-
-// distance fog
-// scene.fog = new Fog( 0xffffff, 0, 750 );
-
+let scene = threeApp.getScene();
+let renderer = threeApp.getRenderer();
 
 ////////////////////////////////////////////////////////////////
 ////////  player
@@ -110,16 +103,16 @@ const velocity = new Vector3();
 const direction = new Vector3();
 
 controls = new PointerLockControls( camera, document.body );
-instructions.addEventListener( 'click', function () {
+infoDetails.addEventListener( 'click', function () {
     controls.lock();
 }, false );
 controls.addEventListener( 'lock', function () {
-    instructions.style.display = 'none';
-    blocker.style.display = 'none';
+    infoDetails.style.display = 'none';
+    infoOverlay.style.display = 'none';
 } );
 controls.addEventListener( 'unlock', function () {
-    blocker.style.display = 'block';
-    instructions.style.display = '';
+    infoOverlay.style.display = 'block';
+    infoDetails.style.display = '';
 } );
 scene.add(controls.getObject());
 

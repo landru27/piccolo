@@ -5,7 +5,7 @@ import { ThreeApp } from './threeApp.js';
 
 import { Mesh, MeshPhongMaterial, Color, Vector3 } from 'three';
 import { BoxBufferGeometry } from 'three';
-import { World } from 'ecsy';
+// import { World } from 'ecsy';
 
 
 ////////////////////////////////////////////////////////////////
@@ -24,7 +24,7 @@ const infoDetails = document.getElementById( 'info' );
 ////////////////////////////////////////////////////////////////
 ////////  initialize the world
 
-let world = new World();
+// let world = new World();
 
 // world.registerComponent(HeightMap);
 // world.registerComponent(LODMesh);
@@ -61,9 +61,9 @@ threeApp.setAmbientLighting({
 });
 
 threeApp.addDirectionalLighting({
-   color: 0xffffff,
-   intensity: 1,
-   position: new Vector3(1, 2, 3),
+    color: 0xffffff,
+    intensity: 1,
+    position: new Vector3(1, 2, 3),
 });
 
 ////////////////////////////////////////////////////////////////

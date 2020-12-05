@@ -4,6 +4,8 @@ var KeyUpAndDownControls = function(domElement) {
     let scope = this;
     this.domElement = domElement;
 
+    this.toggleStats = false;
+
     this.moveForward = false;
     this.moveBackward = false;
     this.moveLeft = false;
@@ -35,6 +37,10 @@ var KeyUpAndDownControls = function(domElement) {
         case 32: // space
             scope.moveJump = true;
             break;
+
+        case 73: // i
+            scope.toggleStats = true;
+            break;
         }
     }
 
@@ -63,6 +69,10 @@ var KeyUpAndDownControls = function(domElement) {
         case 32: // space
             scope.moveJump = false;
             break;
+
+        case 73: // i
+            scope.toggleStats = false;
+            break;
         }
     }
 
@@ -71,8 +81,13 @@ var KeyUpAndDownControls = function(domElement) {
         scope.domElement.addEventListener( 'keyup', onKeyUp, false );
     };
 
+    this.getToggleStats = function () {
+        return {
+            toggleStats: this.toggleStats,
+        };
+    };
+
     this.getMovement = function () {
-        //this.moveForward = true;
         return {
             moveForward: this.moveForward,
             moveBackward: this.moveBackward,

@@ -155,13 +155,20 @@ function animate() {
         controls.getObject().position.y += (velocity.y * delta);
     }
 
-    threeApp.render();
-
     let infoz = [
         'camera position: ' + Presentation.vector3To4Places(controls.getObject().position),
         'camera velocity: ' + Presentation.vector3To4Places(velocity),
     ];
     stats.newInfo(infoz);
+
+    prevToggleStats = toggleStats;
+    toggleStats = threeApp.getKeyboardControls().getToggleStats().toggleStats;
+    if (toggleStats && (toggleStats != prevToggleStats)) {
+        stats.domElement.style.display = (stats.domElement.style.display === 'block' ? 'none' : 'block');
+    }
+
+    threeApp.render();
+
     stats.end();
 }
 
@@ -171,7 +178,10 @@ const velocity = new Vector3();
 const direction = new Vector3();
 
 var stats = new Statistics();
+stats.domElement.style.display = 'none';
 document.body.appendChild( stats.domElement );
+var toggleStats = false;
+var prevToggleStats = false;
 
 animate();
 

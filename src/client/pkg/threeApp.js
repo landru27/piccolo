@@ -56,7 +56,7 @@ export class ThreeApp {
         // user controls
         this.keyboardControls = new KeyUpAndDownControls(this.keyboardControlDOMElement);
         this.pointerControls = new PointerLockControls(this.camera, this.pointerControlDOMElement);
-        this.scene.add(this.pointerControls.getObject());
+        this.scene.add(this.pointerControls.getCamera());
     }
 
     getRenderer() {

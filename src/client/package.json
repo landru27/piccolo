@@ -17,8 +17,8 @@
   },
   "type": "module",
   "scripts": {
-    "lint": "npx eslint --config eslint.config.cjs --ext .js pkg/",
-    "lint-and-fix": "npx eslint --config eslint.config.cjs --ext .js --fix pkg/",
+    "lint": "eslint --config eslint.config.cjs --ext .js pkg/",
+    "lint-and-fix": "eslint --config eslint.config.cjs --ext .js --fix pkg/",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test-detail": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose",
     "devsite": "snowpack dev",

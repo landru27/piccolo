@@ -1,7 +1,10 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
+import * as Presentation from './utility/presentation.js';
+
 import { ThreeApp } from './threeApp.js';
+import { Statistics } from './statistics.js';
 
 import { Mesh, MeshPhongMaterial, Color, Vector3 } from 'three';
 import { BoxBufferGeometry } from 'three';
@@ -108,6 +111,8 @@ threeApp.getScene().add(cube);
 function animate() {
     requestAnimationFrame( animate );
 
+    stats.begin();
+
     const time = performance.now();
     const delta = (time - prevTime) / 1000;
     prevTime = time;
@@ -151,12 +156,22 @@ function animate() {
     }
 
     threeApp.render();
+
+    let infoz = [
+        'camera position: ' + Presentation.vector3To4Places(controls.getObject().position),
+        'camera velocity: ' + Presentation.vector3To4Places(velocity),
+    ];
+    stats.newInfo(infoz);
+    stats.end();
 }
 
 let prevTime = performance.now();
 
 const velocity = new Vector3();
 const direction = new Vector3();
+
+var stats = new Statistics();
+document.body.appendChild( stats.domElement );
 
 animate();
 

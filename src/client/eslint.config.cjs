@@ -25,5 +25,13 @@ module.exports = {
             'error',
             'always'
         ]
-    }
+    },
+    'overrides': [
+        {
+            "files": ["__tests__/*"],
+            "rules": {
+                "no-undef": "off"
+            }
+        }
+    ]
 };

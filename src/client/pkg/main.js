@@ -27,7 +27,7 @@ const infoDetails = document.getElementById( 'info' );
 ////////////////////////////////////////////////////////////////
 ////////  initialize the world
 
-// let world = new World();
+// const world = new World();
 
 // world.registerComponent(HeightMap);
 // world.registerComponent(LODMesh);
@@ -216,7 +216,7 @@ function animate() {
 const controls = threeApp.getPointerControls();
 const camera = controls.getCamera();
 
-var stats = new Statistics();
+const stats = new Statistics();
 stats.domElement.style.display = 'block';
 document.body.appendChild( stats.domElement );
 let toggleStats = false;

@@ -105,7 +105,7 @@ export class ThreeApp {
         let intensity = setDefaultIfNoValue(options.intensity, 1);
         let position = setDefaultIfNoValue(options.position, Object3D.DefaultUp);
 
-        let light = new DirectionalLight(color, intensity);
+        const light = new DirectionalLight(color, intensity);
         light.position.copy(position).normalize();
         this.directionalLights.push(light);
         this.scene.add(this.directionalLights[this.directionalLights.length - 1]);

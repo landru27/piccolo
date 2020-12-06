@@ -8,5 +8,5 @@ export class Terrain extends System {
 }
 
 Terrain.queries = {
-  entities: { components: [HeightMap] }
+    entities: { components: [HeightMap] }
 };

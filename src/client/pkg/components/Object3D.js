@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { Component } from 'ecsy';
+import { Component, Types } from 'ecsy';
 
 ////////////////////////////////////////////////////////////////
 ////////  component
@@ -9,5 +9,5 @@ import { Component } from 'ecsy';
 export class Object3D extends Component {}
 
 Object3D.schema = {
-  object: { type: Types.Ref }
+    object: { type: Types.Ref }
 };

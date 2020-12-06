@@ -1,16 +1,18 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
+import { prng } from '../utility/random.js';
+
 import { BufferGeometry, BufferAttribute } from 'three';
 import { Mesh, MeshPhongMaterial } from 'three';
 
-import { TagComponent, Component, Types } from 'ecsy';
+import { Component, Types } from 'ecsy';
 
 ////////////////////////////////////////////////////////////////
 ////////  component
 
 export class HeightMap extends Component {
-    constructor(props) {
+    constructor() {
         super(true);
 
         const sqrt3 = 1.73205080757;
@@ -19,15 +21,20 @@ export class HeightMap extends Component {
         const unit = 1.0;
         const unithalf = unit * 0.5;
 
-        const gridsize = 100;
+        const gridsize = 1000;
+
+        const prngen = prng('foobar');
 
         let rawVertices = [];
         for (let i = 0; i < (gridsize + 1); i++) {
             for (let j = 0; j < (gridsize + 1); j++) {
 
                 let x = (j * unit) + (i * unithalf);
-                let y = Math.sin(j / 4) * Math.cos(i / 2);
                 let z = (i * sqrt3half);
+                let y = Math.sin(x / 16) * (3 * Math.cos(z / 7));
+                y = y + prngen();
+                y = Math.max(y, 0);
+                y = y + (prngen() * 0.1);
 
                 rawVertices.push(x, y, z);
             }
@@ -37,9 +44,7 @@ export class HeightMap extends Component {
         for (let i = 0; i < gridsize; i++) {
             for (let j = 0; j < gridsize; j++) {
 
-                let x = j;
-                let z = i * 2;
-                let a = (i * (gridsize + 1)) + x;
+                let a = (i * (gridsize + 1)) + j;
                 let b = a + 1;
                 let c = a + (gridsize + 1);
                 let d = c + 1;

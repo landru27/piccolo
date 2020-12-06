@@ -58,8 +58,8 @@ const threeApp = new ThreeApp({
     aspectRatio: viewWidth / viewHeight,
     nearClippingPlane: 0.1,
     farClippingPlane: 1000,
-    cameraPosition: new Vector3(4, 4, 4),
-    cameraLookAt: new Vector3(0, 0, 0),
+    cameraPosition: new Vector3(54, 1, 37),
+    cameraLookAt: new Vector3(58, 1, 38),
     keyboardControlDOMElement: document,
     pointerControlDOMElement: document.body,
 });
@@ -155,8 +155,8 @@ function animate() {
                 camera.position.x = 0.00002;
                 velocity.x = 0;
             }
-            if (camera.position.y < 0.00001) {
-                camera.position.y = 0.00002;
+            if (camera.position.y < 1.00001) {
+                camera.position.y = 1.00002;
                 velocity.y = 0;
             }
             if (camera.position.z < 0.00001) {
@@ -232,11 +232,11 @@ let prevToggleStats = false;
 
 let toggleGravity = false;
 let prevToggleGravity = false;
-let flagGravity = false;
+let flagGravity = true;
 
 let toggleXYZPositive = false;
 let prevToggleXYZPositive = false;
-let flagXYZPositive = false;
+let flagXYZPositive = true;
 
 const velocity = new Vector3();
 const direction = new Vector3();

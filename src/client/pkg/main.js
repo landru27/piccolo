@@ -8,7 +8,10 @@ import { Statistics } from './statistics.js';
 
 import { Mesh, MeshPhongMaterial, Color, Vector3 } from 'three';
 import { BoxBufferGeometry } from 'three';
-// import { World } from 'ecsy';
+
+import { World } from 'ecsy';
+import { HeightMap } from './components/HeightMap.js';
+import { Terrain } from './systems/Terrain.js';
 
 
 ////////////////////////////////////////////////////////////////
@@ -27,17 +30,19 @@ const infoDetails = document.getElementById( 'info' );
 ////////////////////////////////////////////////////////////////
 ////////  initialize the world
 
-// const world = new World();
+const world = new World();
 
-// world.registerComponent(HeightMap);
-// world.registerComponent(LODMesh);
-// world.registerComponent(BiomeMap);
-// world.registerComponent(Location);
-// world.registerComponent(Motion);
-// world.registerComponent(Position);
+world.registerComponent(HeightMap);
+//world.registerComponent(Location);
+//world.registerComponent(Position);
+//world.registerComponent(Motion);
+//world.registerComponent(PlayerCamera);
 
-// world.registerSystem(Terrain);
-// world.registerSystem(Movement);
+world.registerSystem(Terrain);
+//world.registerSystem(PlayerCommand);
+//world.registerSystem(PlayerMovement);
+//world.registerSystem(PlayerCamera);
+//world.registerSystem(Movement);
 
 
 ////////////////////////////////////////////////////////////////
@@ -52,7 +57,7 @@ const threeApp = new ThreeApp({
     fieldOfVision: 35,
     aspectRatio: viewWidth / viewHeight,
     nearClippingPlane: 0.1,
-    farClippingPlane: 100,
+    farClippingPlane: 1000,
     cameraPosition: new Vector3(4, 4, 4),
     cameraLookAt: new Vector3(0, 0, 0),
     keyboardControlDOMElement: document,
@@ -103,6 +108,9 @@ const geometry = new BoxBufferGeometry(2, 2, 2);
 const material = new MeshPhongMaterial({color: 'green'});
 const cube = new Mesh(geometry, material);
 threeApp.getScene().add(cube);
+
+const aSmallLandscape = new HeightMap();
+threeApp.getScene().add(aSmallLandscape.mesh);
 
 
 ////////////////////////////////////////////////////////////////

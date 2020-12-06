@@ -8,7 +8,10 @@ import { Statistics } from './statistics.js';
 
 import { Mesh, MeshPhongMaterial, Color, Vector3 } from 'three';
 import { BoxBufferGeometry } from 'three';
-// import { World } from 'ecsy';
+
+import { World } from 'ecsy';
+import { HeightMap } from './components/HeightMap.js';
+import { Terrain } from './systems/Terrain.js';
 
 
 ////////////////////////////////////////////////////////////////
@@ -27,17 +30,19 @@ const infoDetails = document.getElementById( 'info' );
 ////////////////////////////////////////////////////////////////
 ////////  initialize the world
 
-// let world = new World();
+const world = new World();
 
-// world.registerComponent(HeightMap);
-// world.registerComponent(LODMesh);
-// world.registerComponent(BiomeMap);
-// world.registerComponent(Location);
-// world.registerComponent(Motion);
-// world.registerComponent(Position);
+world.registerComponent(HeightMap);
+//world.registerComponent(Location);
+//world.registerComponent(Position);
+//world.registerComponent(Motion);
+//world.registerComponent(PlayerCamera);
 
-// world.registerSystem(Terrain);
-// world.registerSystem(Movement);
+world.registerSystem(Terrain);
+//world.registerSystem(PlayerCommand);
+//world.registerSystem(PlayerMovement);
+//world.registerSystem(PlayerCamera);
+//world.registerSystem(Movement);
 
 
 ////////////////////////////////////////////////////////////////
@@ -52,9 +57,9 @@ const threeApp = new ThreeApp({
     fieldOfVision: 35,
     aspectRatio: viewWidth / viewHeight,
     nearClippingPlane: 0.1,
-    farClippingPlane: 100,
-    cameraPosition: new Vector3(4, 4, 4),
-    cameraLookAt: new Vector3(0, 0, 0),
+    farClippingPlane: 1000,
+    cameraPosition: new Vector3(54, 1, 37),
+    cameraLookAt: new Vector3(58, 1, 38),
     keyboardControlDOMElement: document,
     pointerControlDOMElement: document.body,
 });
@@ -104,6 +109,9 @@ const material = new MeshPhongMaterial({color: 'green'});
 const cube = new Mesh(geometry, material);
 threeApp.getScene().add(cube);
 
+const aSmallLandscape = new HeightMap();
+threeApp.getScene().add(aSmallLandscape.mesh);
+
 
 ////////////////////////////////////////////////////////////////
 ////////  main loop
@@ -147,8 +155,8 @@ function animate() {
                 camera.position.x = 0.00002;
                 velocity.x = 0;
             }
-            if (camera.position.y < 0.00001) {
-                camera.position.y = 0.00002;
+            if (camera.position.y < 1.00001) {
+                camera.position.y = 1.00002;
                 velocity.y = 0;
             }
             if (camera.position.z < 0.00001) {
@@ -216,7 +224,7 @@ function animate() {
 const controls = threeApp.getPointerControls();
 const camera = controls.getCamera();
 
-var stats = new Statistics();
+const stats = new Statistics();
 stats.domElement.style.display = 'block';
 document.body.appendChild( stats.domElement );
 let toggleStats = false;
@@ -224,11 +232,11 @@ let prevToggleStats = false;
 
 let toggleGravity = false;
 let prevToggleGravity = false;
-let flagGravity = false;
+let flagGravity = true;
 
 let toggleXYZPositive = false;
 let prevToggleXYZPositive = false;
-let flagXYZPositive = false;
+let flagXYZPositive = true;
 
 const velocity = new Vector3();
 const direction = new Vector3();

@@ -57,7 +57,7 @@ const Statistics = function () {
         end: function() {
             frames++;
 
-            let time = performance.now();
+            const time = performance.now();
 
             timePanel.update(time - beginTime, 40);
 
@@ -67,7 +67,7 @@ const Statistics = function () {
                 prevTime = time;
                 frames = 0;
 
-                let memory = performance.memory;
+                const memory = performance.memory;
                 memPanel.update(memory.usedJSHeapSize / 1048576, memory.jsHeapSizeLimit / 1048576);
             }
 

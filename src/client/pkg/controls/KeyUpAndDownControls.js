@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 
-var KeyUpAndDownControls = function(domElement) {
-    let scope = this;
+const KeyUpAndDownControls = function(domElement) {
+    const scope = this;
     this.domElement = domElement;
 
     this.toggleStats = false;

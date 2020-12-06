@@ -13,7 +13,7 @@
 
 import { Euler, EventDispatcher, Vector3 } from 'three';
 
-var PointerLockControls = function (camera, domElement) {
+const PointerLockControls = function (camera, domElement) {
 
     //////// initialization
     if (domElement === undefined) {
@@ -21,14 +21,14 @@ var PointerLockControls = function (camera, domElement) {
     }
     this.domElement = domElement;
 
-    var scope = this;
+    const scope = this;
 
     //////// pointer locking and unlocking
     this.isLocked = false;
 
-    var lockEvent = { type: 'lock' };
-    var unlockEvent = { type: 'unlock' };
-    var changeEvent = { type: 'change' };
+    const lockEvent = { type: 'lock' };
+    const unlockEvent = { type: 'unlock' };
+    const changeEvent = { type: 'change' };
 
     function onPointerlockChange() {
         if (scope.domElement.ownerDocument.pointerLockElement === scope.domElement) {
@@ -78,22 +78,23 @@ var PointerLockControls = function (camera, domElement) {
     this.minPolarAngle = 0;
     this.maxPolarAngle = Math.PI;
 
-    var euler = new Euler(0, 0, 0, 'YXZ');
-    var PI_2 = Math.PI / 2;
-    var vec = new Vector3();
+    const euler = new Euler(0, 0, 0, 'YXZ');
+    const vec = new Vector3();
 
     this.getDirection = function () {
-        var direction = new Vector3(0, 0, -1);
+        const direction = new Vector3(0, 0, -1);
         return function (v) {
             return v.copy(direction).applyQuaternion(camera.quaternion);
         };
     }();
 
     function onMouseMove(event) {
+        const PI_2 = Math.PI / 2;
+
         if (scope.isLocked === false) return;
 
-        var movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
-        var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+        const movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+        const movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
 
         euler.setFromQuaternion(camera.quaternion);
         // TODO : add the ability to set look-sensitivity, and then replace these hard-coded values

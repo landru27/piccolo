@@ -6,12 +6,16 @@ import * as Presentation from './utility/presentation.js';
 import { ThreeApp } from './threeApp.js';
 import { Statistics } from './statistics.js';
 
-import { Mesh, MeshPhongMaterial, Color, Vector3 } from 'three';
-import { BoxBufferGeometry } from 'three';
+import { Object3D, Group } from 'three';
+import { Mesh, MeshPhongMaterial, Color, Vector3, Euler } from 'three';
+import { BoxBufferGeometry, ConeBufferGeometry } from 'three';
 
 import { World } from 'ecsy';
 import { HeightMap } from './components/HeightMap.js';
 import { Terrain } from './systems/Terrain.js';
+
+import Blockly from 'blockly';
+import Interpreter from 'js-interpreter';
 
 
 ////////////////////////////////////////////////////////////////
@@ -104,13 +108,37 @@ threeApp.getPointerControls().addEventListener( 'unlock', function () {
 ////////  populate the world
 
 // create something to show -- will move to ECS
-const geometry = new BoxBufferGeometry(2, 2, 2);
-const material = new MeshPhongMaterial({color: 'green'});
-const cube = new Mesh(geometry, material);
-threeApp.getScene().add(cube);
 
+//const geometry = new BoxBufferGeometry(2, 2, 2);
+//const material = new MeshPhongMaterial({color: 'green'});
+//const cube = new Mesh(geometry, material);
+//threeApp.getScene().add(cube);
+
+////
 const aSmallLandscape = new HeightMap();
 threeApp.getScene().add(aSmallLandscape.mesh);
+
+////
+let geometry = null;
+let material = null;
+let mesh = null;
+
+const boomra = new Group();
+
+geometry = new BoxBufferGeometry(0.25, 0.125, 0.5);
+material = new MeshPhongMaterial({color: 0xb0c4de});
+mesh = new Mesh(geometry, material);
+boomra.add(mesh);
+
+geometry = new ConeBufferGeometry(0.01, 0.25, 8);
+material = new MeshPhongMaterial({color: 0xb0c4de});
+mesh = new Mesh(geometry, material);
+mesh.position.set(0.1, 0.1, -0.2);
+boomra.add(mesh);
+
+boomra.position.set(60, 0.125, 40);
+boomra.rotateY(Math.PI / 2);
+threeApp.getScene().add(boomra);
 
 
 ////////////////////////////////////////////////////////////////
@@ -128,11 +156,22 @@ function animate() {
     // command input
     commands = threeApp.getKeyboardControls().getCommands();
 
+    //if (true) {
     if (controls.isLocked === true) {
+        // execute the next step in the player-defined program
+        if (flagExecuteBlocklyCode) {
+            let codeStep = codeEngine.step();
+            if (codeStep) {
+                console.log('codeStep: ' + codeStep);
+            }
+        }
+
         // dampen velocity so we don't meteor away
         velocity.x -= velocity.x * 4 * delta;
         velocity.y -= velocity.y * 4 * delta;
         velocity.z -= velocity.z * 4 * delta;
+
+        botVelocity -= botVelocity * 4 * delta;
 
         // gravity
         prevToggleGravity = toggleGravity;
@@ -165,6 +204,14 @@ function animate() {
             }
         }
 
+        // manual bot movement forward
+        prevToggleBotMoveFwd = toggleBotMoveFwd;
+        toggleBotMoveFwd = commands.toggleBotMoveFwd;
+        if (toggleBotMoveFwd && (toggleBotMoveFwd != prevToggleBotMoveFwd)) {
+            toggleBotMoveFwd = !toggleBotMoveFwd;
+            botAddForwardVelocity();
+        }
+
         // movement input
         movement = threeApp.getKeyboardControls().getMovement();
 
@@ -187,6 +234,8 @@ function animate() {
 
         velocity.x += direction.x * 40.0 * delta;
         controls.moveRightward(velocity.x * delta);
+
+        botMoveForward(botVelocity * delta);
 
         // jumping
         prevJumping = moveJumping;
@@ -226,7 +275,7 @@ const camera = controls.getCamera();
 
 const stats = new Statistics();
 stats.domElement.style.display = 'block';
-document.body.appendChild( stats.domElement );
+document.getElementById( 'world-area' ).appendChild( stats.domElement );
 let toggleStats = false;
 let prevToggleStats = false;
 
@@ -238,16 +287,143 @@ let toggleXYZPositive = false;
 let prevToggleXYZPositive = false;
 let flagXYZPositive = true;
 
+let toggleBotMoveFwd = false;
+let prevToggleBotMoveFwd = false;
+let flagBotMoveFwd = false;
+
 const velocity = new Vector3();
 const direction = new Vector3();
 const slew = new Vector3();
 let moveJumping;
 let prevJumping;
 
+let botVelocity = 0.0;
+const botDirection = new Vector3();
+
 let prevTime = performance.now();
 let movement;
 let commands;
 
+
+////////////////////////////////////////////////////////////////
+////////  blockly
+
+let codeEngine = null;
+let flagExecuteBlocklyCode = false;
+
+Blockly.defineBlocksWithJsonArray([
+  {
+    "type": "move_bot_fwd",
+    "message0": "Move forward",
+    "previousStatement": null,
+    "colour": 355
+  }
+]);
+Blockly.JavaScript['move_bot_fwd'] = function(block) {
+  return 'botAddForwardVelocity();\n';
+};
+
+Blockly.defineBlocksWithJsonArray([
+  {
+    "type": "turn_bot_left",
+    "message0": "Turn left",
+    "previousStatement": null,
+    "colour": 355
+  }
+]);
+Blockly.JavaScript['turn_bot_left'] = function(block) {
+  return 'botTurnLeft();\n';
+};
+
+Blockly.defineBlocksWithJsonArray([
+  {
+    "type": "turn_bot_right",
+    "message0": "Turn right",
+    "previousStatement": null,
+    "colour": 355
+  }
+]);
+Blockly.JavaScript['turn_bot_right'] = function(block) {
+  return 'botTurnRight();\n';
+};
+
+const workspace = Blockly.inject('blockly-area', {
+    toolbox: document.getElementById('toolbox')
+});
+
+document.getElementById('buttonRunProgram').addEventListener('click', handleRunProgram);
+
+function handleRunProgram(event) {
+    console.log('handleRunProgram');
+
+    document.getElementById('buttonRunProgram').removeEventListener('click', handleRunProgram);
+    document.getElementById('buttonStopProgram').addEventListener('click', handleStopProgram);
+
+    let blocklyCode = Blockly.JavaScript.workspaceToCode(Blockly.getMainWorkspace());
+
+    const initFunc = function(interpreter, globalObject) {
+
+      var wrapper = function() {
+        return botAddForwardVelocity();
+      };
+      interpreter.setProperty(globalObject, 'botAddForwardVelocity', interpreter.createNativeFunction(wrapper));
+
+      var wrapper = function() {
+        return botTurnLeft();
+      };
+      interpreter.setProperty(globalObject, 'botTurnLeft', interpreter.createNativeFunction(wrapper));
+
+      var wrapper = function() {
+        return botTurnRight();
+      };
+      interpreter.setProperty(globalObject, 'botTurnRight', interpreter.createNativeFunction(wrapper));
+
+    };
+
+    if (blocklyCode) {
+        codeEngine = new Interpreter(blocklyCode, initFunc);
+        flagExecuteBlocklyCode = true;
+    }
+
+    try {
+      console.log(blocklyCode);
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+function handleStopProgram(event) {
+    console.log('handleStopProgram');
+
+    flagExecuteBlocklyCode = false;
+    codeEngine = null;
+
+    document.getElementById('buttonStopProgram').removeEventListener('click', handleStopProgram);
+    document.getElementById('buttonRunProgram').addEventListener('click', handleRunProgram);
+}
+
+function botMoveForward(distance) {
+    boomra.getWorldDirection(botDirection);
+    boomra.position.addScaledVector(botDirection, distance);
+}
+
+function botAddForwardVelocity(distance) {
+    botVelocity += 1.0;
+}
+
+function botTurnLeft(distance) {
+    boomra.rotateY(Math.PI / 6);
+}
+
+function botTurnRight(distance) {
+    boomra.rotateY(-Math.PI / 6);
+}
+
+
+////////////////////////////////////////////////////////////////
+////////  make it so
+
 animate();
+
 
 ////////////////////////////////////////////////////////////////

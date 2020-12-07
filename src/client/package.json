@@ -4,7 +4,9 @@
   "description": "piccolo client",
   "main": "main.js",
   "dependencies": {
+    "blockly": "^3.20200924.4",
     "ecsy": "^0.4.2",
+    "js-interpreter": "^2.2.0",
     "three": "^0.123.0"
   },
   "devDependencies": {

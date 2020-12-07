@@ -14,17 +14,41 @@
   </head>
 
   <body>
-    <div id="info-overlay" class="fullwindow">
-      <div id="info" class="fullwindow">
-        <span style="font-size:36px">Click to begin</span>
-        <br>
-        <br>Move: WASD
-        <br>Look: MOUSE
+
+    <xml id="toolbox" style="display: none">
+      <block type="controls_repeat_ext"></block>
+      <block type="move_bot_fwd"></block>
+      <block type="turn_bot_left"></block>
+      <block type="turn_bot_right"></block>
+      <block type="logic_compare"></block>
+      <block type="math_number"></block>
+      <block type="math_arithmetic"></block>
+    </xml>
+
+    <div id="whole-window" class="fullwindow">
+      <div class="onethirdwindow" style="vertical-align:top;">
+        <div id="blockly-area" style="padding-top:2%; height:80%; vertical-align:top;">
+        </div>
+        <div style="margin-top:2%;">
+          <button id="buttonRunProgram" style="margin:2%; padding: 8px; width: 128px; height: 64px; display: inline-block; text-align: center; font: 24px bold Arial, sans-serif;">Go!</button>
+          <button id="buttonStopProgram" style="margin:2%; padding: 8px; width: 128px; height: 64px; display: inline-block; text-align: center; font: 24px bold Arial, sans-serif;">Stop</button>
+        </div>
+      </div>
+
+      <div id="world-area" class="twothirdswindow">
+        <div id="info-overlay" class="fullblock">
+          <div id="info" class="fullblock">
+            <span style="font-size:36px">Click to begin</span>
+            <br>
+            <br>Move: WASD
+            <br>Look: MOUSE
+          </div>
+        </div>
+
+        <div id="canvas-container" class="fullblock">
+        </div>
       </div>
     </div>
 
-    <div id="canvas-container" class="fullwindow">
-      <!-- the three.js <canvas> will be inserted here -->
-    </div>
   </body>
 </html>

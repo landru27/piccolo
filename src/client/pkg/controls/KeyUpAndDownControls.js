@@ -7,6 +7,7 @@ const KeyUpAndDownControls = function(domElement) {
     this.toggleStats = false;
     this.toggleGravity = false;
     this.toggleXYZPositive = false;
+    this.toggleBotMoveFwd = false;
 
     this.moveForward = false;
     this.moveBackward = false;
@@ -100,6 +101,10 @@ const KeyUpAndDownControls = function(domElement) {
         case 70: // f
             scope.slewDownward = flag;
             break;
+
+        case 80: // p
+            scope.toggleBotMoveFwd = flag;
+            break;
         }
     }
 
@@ -113,6 +118,7 @@ const KeyUpAndDownControls = function(domElement) {
             toggleStats: this.toggleStats,
             toggleGravity: this.toggleGravity,
             toggleXYZPositive: this.toggleXYZPositive,
+            toggleBotMoveFwd: this.toggleBotMoveFwd,
         };
     };
 

@@ -13,7 +13,7 @@ const Statistics = function () {
 
     // parent statistics container
     const statsContainer = document.createElement( 'div' );
-    statsContainer.style.cssText = 'position:fixed; top:8px; left:8px; z-index:99; display:block; opacity:0.8; background-color: rgba(255, 255, 255, 0.4); cursor:pointer;';
+    statsContainer.style.cssText = 'position:absolute; top:8px; left:8px; z-index:99; display:block; opacity:0.8; background-color: rgba(255, 255, 255, 0.4); cursor:pointer;';
 
     // performance graphs
     const fpsContainer = document.createElement( 'div' );

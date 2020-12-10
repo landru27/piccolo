@@ -6,8 +6,8 @@ import * as Presentation from './utility/presentation.js';
 import { ThreeApp } from './threeApp.js';
 import { Statistics } from './statistics.js';
 
-import { Object3D, Group } from 'three';
-import { Mesh, MeshPhongMaterial, Color, Vector3, Euler } from 'three';
+import { Group } from 'three';
+import { Mesh, MeshPhongMaterial, Color, Vector3 } from 'three';
 import { BoxBufferGeometry, ConeBufferGeometry } from 'three';
 
 import { World } from 'ecsy';
@@ -289,7 +289,6 @@ let flagXYZPositive = true;
 
 let toggleBotMoveFwd = false;
 let prevToggleBotMoveFwd = false;
-let flagBotMoveFwd = false;
 
 const velocity = new Vector3();
 const direction = new Vector3();
@@ -312,48 +311,52 @@ let codeEngine = null;
 let flagExecuteBlocklyCode = false;
 
 Blockly.defineBlocksWithJsonArray([
-  {
-    "type": "move_bot_fwd",
-    "message0": "Move forward",
-    "previousStatement": null,
-    "colour": 355
-  }
+    {
+        'type': 'move_bot_fwd',
+        'message0': 'Move forward',
+        'previousStatement': null,
+        'nextStatement': null,
+        'colour': 355
+    }
 ]);
-Blockly.JavaScript['move_bot_fwd'] = function(block) {
-  return 'botAddForwardVelocity();\n';
+Blockly.JavaScript['move_bot_fwd'] = function() {
+    return 'botAddForwardVelocity();\n';
 };
 
 Blockly.defineBlocksWithJsonArray([
-  {
-    "type": "turn_bot_left",
-    "message0": "Turn left",
-    "previousStatement": null,
-    "colour": 355
-  }
+    {
+        'type': 'turn_bot_left',
+        'message0': 'Turn left',
+        'previousStatement': null,
+        'nextStatement': null,
+        'colour': 355
+    }
 ]);
-Blockly.JavaScript['turn_bot_left'] = function(block) {
-  return 'botTurnLeft();\n';
+Blockly.JavaScript['turn_bot_left'] = function() {
+    return 'botTurnLeft();\n';
 };
 
 Blockly.defineBlocksWithJsonArray([
-  {
-    "type": "turn_bot_right",
-    "message0": "Turn right",
-    "previousStatement": null,
-    "colour": 355
-  }
+    {
+        'type': 'turn_bot_right',
+        'message0': 'Turn right',
+        'previousStatement': null,
+        'nextStatement': null,
+        'colour': 355
+    }
 ]);
-Blockly.JavaScript['turn_bot_right'] = function(block) {
-  return 'botTurnRight();\n';
+Blockly.JavaScript['turn_bot_right'] = function() {
+    return 'botTurnRight();\n';
 };
 
-const workspace = Blockly.inject('blockly-area', {
+//const workspace = Blockly.inject('blockly-area', {
+Blockly.inject('blockly-area', {
     toolbox: document.getElementById('toolbox')
 });
 
 document.getElementById('buttonRunProgram').addEventListener('click', handleRunProgram);
 
-function handleRunProgram(event) {
+function handleRunProgram() {
     console.log('handleRunProgram');
 
     document.getElementById('buttonRunProgram').removeEventListener('click', handleRunProgram);
@@ -363,20 +366,22 @@ function handleRunProgram(event) {
 
     const initFunc = function(interpreter, globalObject) {
 
-      var wrapper = function() {
-        return botAddForwardVelocity();
-      };
-      interpreter.setProperty(globalObject, 'botAddForwardVelocity', interpreter.createNativeFunction(wrapper));
+        let wrapper = function() {};
 
-      var wrapper = function() {
-        return botTurnLeft();
-      };
-      interpreter.setProperty(globalObject, 'botTurnLeft', interpreter.createNativeFunction(wrapper));
+        wrapper = function() {
+            return botAddForwardVelocity();
+        };
+        interpreter.setProperty(globalObject, 'botAddForwardVelocity', interpreter.createNativeFunction(wrapper));
 
-      var wrapper = function() {
-        return botTurnRight();
-      };
-      interpreter.setProperty(globalObject, 'botTurnRight', interpreter.createNativeFunction(wrapper));
+        wrapper = function() {
+            return botTurnLeft();
+        };
+        interpreter.setProperty(globalObject, 'botTurnLeft', interpreter.createNativeFunction(wrapper));
+
+        wrapper = function() {
+            return botTurnRight();
+        };
+        interpreter.setProperty(globalObject, 'botTurnRight', interpreter.createNativeFunction(wrapper));
 
     };
 
@@ -386,13 +391,13 @@ function handleRunProgram(event) {
     }
 
     try {
-      console.log(blocklyCode);
+        console.log(blocklyCode);
     } catch (error) {
-      console.log(error);
+        console.log(error);
     }
 }
 
-function handleStopProgram(event) {
+function handleStopProgram() {
     console.log('handleStopProgram');
 
     flagExecuteBlocklyCode = false;
@@ -407,15 +412,15 @@ function botMoveForward(distance) {
     boomra.position.addScaledVector(botDirection, distance);
 }
 
-function botAddForwardVelocity(distance) {
+function botAddForwardVelocity() {
     botVelocity += 1.0;
 }
 
-function botTurnLeft(distance) {
+function botTurnLeft() {
     boomra.rotateY(Math.PI / 6);
 }
 
-function botTurnRight(distance) {
+function botTurnRight() {
     boomra.rotateY(-Math.PI / 6);
 }
 

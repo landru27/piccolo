@@ -1,6 +1,6 @@
 import { System } from 'ecsy';
 
-import { HeightMap } from '../components/HeightMap.js';
+import { GlobeHeightMap } from '../components/GlobeHeightMap.js';
 
 export class Terrain extends System {
     execute(delta) {
@@ -8,5 +8,5 @@ export class Terrain extends System {
 }
 
 Terrain.queries = {
-    entities: { components: [HeightMap] }
+    entities: { components: [GlobeHeightMap] }
 };

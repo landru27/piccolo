@@ -46,8 +46,6 @@ body {
 #appOverlay {
   z-index: 9;
 
-  padding: 16px;
-
   color: #ffffff;
   text-align: center;
   font-family: Arial;

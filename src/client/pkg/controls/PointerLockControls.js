@@ -13,15 +13,15 @@
 
 import { Euler, EventDispatcher, Vector3 } from 'three';
 
-const PointerLockControls = function (camera, domElement) {
+const PointerLockControls = function(domElement) {
+
+    const scope = this;
 
     //////// initialization
     if (domElement === undefined) {
         domElement = document.body;
     }
     this.domElement = domElement;
-
-    const scope = this;
 
     //////// pointer locking and unlocking
     this.isLocked = false;
@@ -50,6 +50,12 @@ const PointerLockControls = function (camera, domElement) {
         scope.domElement.ownerDocument.addEventListener('pointerlockerror', onPointerlockError, false);
     };
 
+    this.disconnect = function () {
+        scope.domElement.ownerDocument.removeEventListener('mousemove', onMouseMove, false);
+        scope.domElement.ownerDocument.removeEventListener('pointerlockchange', onPointerlockChange, false);
+        scope.domElement.ownerDocument.removeEventListener('pointerlockerror', onPointerlockError, false);
+    };
+
     this.lock = function () {
         this.domElement.requestPointerLock();
     };
@@ -58,80 +64,48 @@ const PointerLockControls = function (camera, domElement) {
         scope.domElement.ownerDocument.exitPointerLock();
     };
 
-    this.disconnect = function () {
-        scope.domElement.ownerDocument.removeEventListener('mousemove', onMouseMove, false);
-        scope.domElement.ownerDocument.removeEventListener('pointerlockchange', onPointerlockChange, false);
-        scope.domElement.ownerDocument.removeEventListener('pointerlockerror', onPointerlockError, false);
-    };
-
     this.dispose = function () {
         this.disconnect();
     };
 
-    this.getCamera = function () { // retaining this method for backward compatibility
-        return camera;
-    };
-
-    //////// rotation and movement
-
-    // constrain the pitch of the camera; range is 0 to Math.PI radians
-    this.minPolarAngle = 0;
-    this.maxPolarAngle = Math.PI;
-
+    //////// rotation
+    const halfPI = Math.PI / 2;
     const euler = new Euler(0, 0, 0, 'YXZ');
     const vec = new Vector3();
 
-    this.getDirection = function () {
-        const direction = new Vector3(0, 0, -1);
-        return function (v) {
-            return v.copy(direction).applyQuaternion(camera.quaternion);
-        };
-    }();
+    // constrain the pitch of rotation; range is 0 to Math.PI radians
+    this.minPolarAngle = 0;
+    this.maxPolarAngle = Math.PI;
+
+    this.lookSensitivity = 0.002;
+    this.mouseMovementX = 0;
+    this.mouseMovementY = 0;
 
     function onMouseMove(event) {
-        const PI_2 = Math.PI / 2;
-
         if (scope.isLocked === false) return;
 
-        const movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
-        const movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
-
-        euler.setFromQuaternion(camera.quaternion);
-        // TODO : add the ability to set look-sensitivity, and then replace these hard-coded values
-        euler.y -= movementX * 0.002;
-        euler.x -= movementY * 0.002;
-        euler.x = Math.max(PI_2 - scope.maxPolarAngle, Math.min(PI_2 - scope.minPolarAngle, euler.x));
-        camera.quaternion.setFromEuler(euler);
+        scope.mouseMovementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+        scope.mouseMovementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
 
         scope.dispatchEvent(changeEvent);
     }
 
-    this.moveForward = function (distance) {
-        camera.getWorldDirection(vec);
-        camera.position.addScaledVector(vec, distance);
+    this.setLookSensitivity = function(s) {
+        this.lookSensitivity = s;
     };
 
-    this.moveForwardXZ = function (distance) {
-        vec.setFromMatrixColumn(camera.matrix, 0);
-        vec.crossVectors(camera.up, vec);
-        camera.position.addScaledVector(vec, distance);
-    };
+    this.applyUpdate = function(q) {
+        euler.setFromQuaternion(q);
 
-    this.moveForwardXY = function () {
-    };
+        euler.y -= scope.mouseMovementX * scope.lookSensitivity;
+        euler.x -= scope.mouseMovementY * scope.lookSensitivity;
+        euler.x = Math.max(halfPI - scope.maxPolarAngle, Math.min(halfPI - scope.minPolarAngle, euler.x));
 
-    this.moveForwardYZ = function () {
-    };
+        q.setFromEuler(euler);
 
-    this.moveRightward = function (distance) {
-        vec.setFromMatrixColumn(camera.matrix, 0);
-        camera.position.addScaledVector(vec, distance);
-    };
-
-    this.moveUpward = function (distance) {
-        vec.setFromMatrixColumn(camera.matrix, 1);
-        camera.position.addScaledVector(vec, distance);
-    };
+        scope.mouseMovementX = 0;
+        scope.mouseMovementY = 0;
+    }
 
     this.connect();
 };

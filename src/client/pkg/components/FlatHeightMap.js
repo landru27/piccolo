@@ -11,7 +11,7 @@ import { Component, Types } from 'ecsy';
 ////////////////////////////////////////////////////////////////
 ////////  component
 
-export class HeightMap extends Component {
+export class FlatHeightMap extends Component {
     constructor() {
         super(true);
 
@@ -87,7 +87,7 @@ export class HeightMap extends Component {
     }
 }
 
-HeightMap.schema = {
+FlatHeightMap.schema = {
     geometry: { type: Types.Ref },
     material: { type: Types.Ref },
     mesh: { type: Types.Ref },

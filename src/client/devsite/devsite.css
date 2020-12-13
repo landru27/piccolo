@@ -43,30 +43,8 @@ body {
   height: 98%;
 }
 
-#info-overlay {
+#appOverlay {
   z-index: 9;
-
-  background-color: rgba(0,0,0,0.5);
-}
-
-#info {
-  z-index: 7;
-
-  display: -webkit-box;
-  display: -moz-box;
-  display: box;
-
-  -webkit-box-orient: horizontal;
-  -moz-box-orient: horizontal;
-  box-orient: horizontal;
-
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  box-pack: center;
-
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  box-align: center;
 
   color: #ffffff;
   text-align: center;
@@ -74,10 +52,12 @@ body {
   font-size: 14px;
   line-height: 24px;
 
+  background-color: rgba(0,0,0,0.5);
+
   cursor: pointer;
 }
 
-#canvas-container {
+#appContainer {
   z-index: 0;
 
   display: flex;

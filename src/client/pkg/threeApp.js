@@ -6,8 +6,12 @@ import { setDefaultIfNoValue } from './utility/comparison.js';
 import { Object3D, Vector3, Color } from 'three';
 import { Clock, Scene, WebGLRenderer } from 'three';
 import { PerspectiveCamera } from 'three';
-import { KeyUpAndDownControls } from './controls/KeyUpAndDownControls.js';
-import { PointerLockControls } from './controls/PointerLockControls.js';
+
+import { PointerLockControl } from './controls/PointerLockControl.js';
+//import { KeyboardControl } from './controls/KeyboardControl.js';
+
+import { PointerInputs } from './components/PointerInputs.js';
+//import { KeyboardInputs } from './components/KeyboardInputs.js';
 
 
 ////////////////////////////////////////////////////////////////
@@ -21,8 +25,8 @@ const ThreeApp = function(options) {
     let devicePixelRatio = setDefaultIfNoValue(options.devicePixelRatio, 1);
     let appContainerDOMElement = setDefaultIfNoValue(options.appContainerDOMElement, 'appContainer');
     let appOverlayDOMElement = setDefaultIfNoValue(options.appOverlayDOMElement, 'appOverlay');
-    let keyboardControlsDOMElement = setDefaultIfNoValue(options.keyboardControlsDOMElement, document);
-    let pointerControlsDOMElement = setDefaultIfNoValue(options.pointerControlsDOMElement, document.body);
+    let pointerControlDOMElement = setDefaultIfNoValue(options.pointerControlDOMElement, document.body);
+    let keyboardControlDOMElement = setDefaultIfNoValue(options.keyboardControlDOMElement, document);
     let clearColor = setDefaultIfNoValue(options.clearColor, 0x000000);
     let background = setDefaultIfNoValue(options.background, 0x000000);
     let fieldOfView = setDefaultIfNoValue(options.fieldOfView, 45);
@@ -33,14 +37,16 @@ const ThreeApp = function(options) {
 
     // viewport
     let appContainer = document.getElementById(appContainerDOMElement);
-    let appOverlay = document.getElementById(appOverlayDOMElement);
     let viewportWidth = appContainer.clientWidth;
     let viewportHeight = appContainer.clientHeight;
     let aspectRatio = (viewportWidth / viewportHeight);
 
     // user controls
-    let keyboardControls = new KeyUpAndDownControls(keyboardControlsDOMElement);
-    let pointerControls = new PointerLockControls(pointerControlsDOMElement);
+    let appOverlay = document.getElementById(appOverlayDOMElement);
+    let pointerInputs = new PointerInputs();
+    let pointerControl = new PointerLockControl(pointerControlDOMElement, pointerInputs);
+    //let keyboardInputs = new KeyboardInputs();
+    //let keyboardControl = new KeyboardControl(keyboardControlDOMElement, keyboardInputs);
 
     // timing clock
     let clock = new Clock();
@@ -65,16 +71,8 @@ const ThreeApp = function(options) {
     appContainer.append(renderer.domElement);
 
     appOverlay.addEventListener('click', function () {
-        pointerControls.lock();
+        pointerControl.initiatePointerLock(appOverlay);
     }, false);
-
-    pointerControls.addEventListener('lock', function () {
-        appOverlay.style.display = 'none';
-    });
-
-    pointerControls.addEventListener('unlock', function () {
-        appOverlay.style.display = 'block';
-    });
 
     ////////////////////////////////
 
@@ -95,13 +93,21 @@ const ThreeApp = function(options) {
 
     ////////////////////////////////
 
-    this.getPointerControls = function() {
-        return pointerControls;
+    this.getPointerControl = function() {
+        return pointerControl;
     }
 
-    this.getKeyboardControls = function() {
-        return keyboardControls;
+    this.getPointerInputs = function() {
+        return pointerInputs;
     }
+
+//    this.getKeyboardControl = function() {
+//        return keyboardControl;
+//    }
+//
+//    this.getKeyboardInputs = function() {
+//        return keyboardInputs;
+//    }
 
     this.getScene = function() {
         return scene;

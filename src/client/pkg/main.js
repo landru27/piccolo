@@ -39,8 +39,8 @@ window.addEventListener('resize', function() {
 }, false);
 
 const stats = new Statistics();
-stats.domElement.style.display = 'block';
-document.getElementById( 'world-area' ).appendChild( stats.domElement );
+stats.showStatsPanel();
+stats.attachStatsPanel(document.getElementById('world-area'));
 
 
 ////////////////////////////////////////////////////////////////

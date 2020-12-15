@@ -48,7 +48,21 @@ const Statistics = function () {
     let infoz = [];
 
     return {
-        domElement: statsContainer,
+        getDOMElement: function() {
+            return statsContainer;
+        },
+
+        attachStatsPanel: function(parentDOMElement) {
+            parentDOMElement.appendChild(statsContainer);
+        },
+
+        showStatsPanel: function() {
+            statsContainer.style.display = 'block';
+        },
+
+        hideStatsPanel: function() {
+            statsContainer.style.display = 'none';
+        },
 
         begin: function() {
             beginTime = performance.now();

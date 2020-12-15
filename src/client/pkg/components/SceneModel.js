@@ -7,8 +7,8 @@ import { Component, Types } from 'ecsy';
 ////////////////////////////////////////////////////////////////
 ////////  component
 
-export class SceneObj extends Component {}
+export class SceneModel extends Component {}
 
-SceneObj.schema = {
+SceneModel.schema = {
     ref: { type: Types.Ref }
 };

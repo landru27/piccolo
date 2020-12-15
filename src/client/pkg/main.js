@@ -11,8 +11,13 @@ import { AxesHelper, BoxGeometry, MeshPhongMaterial, Mesh } from 'three';
 
 import { World } from 'ecsy';
 
-import { SceneObj } from './components/SceneObj.js';
-import { PlayerTag, PlayerKeyboardControls, PlayerPointerControls, PlayerCamera } from './components/Player.js';
+import { SceneModel } from './components/SceneModel.js';
+import { PointerInputs } from './components/PointerInputs.js';
+//import { KeyboardInputs } from './components/KeyboardInputs.js';
+import { PlayerTag, PlayerCamera } from './components/Player.js';
+import { PlayerInputs } from './components/PlayerInputs.js';
+
+//import { PlayerAction } from './systems/PlayerAction.js';
 import { PlayerCameraMotion } from './systems/PlayerCameraMotion.js';
 
 
@@ -23,8 +28,8 @@ const threeApp = new ThreeApp({
     devicePixelRatio: window.devicePixelRatio,
     appContainerDOMElement: 'appContainer',
     appOverlayDOMElement: 'appOverlay',
-    keyboardControlsDOMElement: document,
-    pointerControlsDOMElement: document.body,
+    pointerControlDOMElement: document.body,
+    keyboardControlDOMElement: document,
     clearColor: 0x000000,
     background: new Color('skyblue'),
     fieldOfVision: 35,
@@ -39,8 +44,8 @@ window.addEventListener('resize', function() {
 }, false);
 
 const stats = new Statistics();
-stats.domElement.style.display = 'block';
-document.getElementById( 'world-area' ).appendChild( stats.domElement );
+stats.showStatsPanel();
+stats.attachStatsPanel(document.getElementById('world-area'));
 
 
 ////////////////////////////////////////////////////////////////
@@ -49,10 +54,9 @@ document.getElementById( 'world-area' ).appendChild( stats.domElement );
 const world = new World();
 
 //world.registerComponent(ThreeAppRef);
-world.registerComponent(SceneObj);
+world.registerComponent(SceneModel);
 world.registerComponent(PlayerTag);
-world.registerComponent(PlayerKeyboardControls);
-world.registerComponent(PlayerPointerControls);
+world.registerComponent(PlayerInputs);
 world.registerComponent(PlayerCamera);
 //world.registerComponent(Propulsion);
 //world.registerComponent(Velocity);
@@ -79,12 +83,19 @@ threeApp.getScene().add(new Mesh(new BoxGeometry(1, 1, 1), new MeshPhongMaterial
 
 // the player entity
 const playerObj = new Object3D();
-const player = world.createEntity();
-player.addComponent(SceneObj, {ref: playerObj});
-player.addComponent(PlayerTag);
-player.addComponent(PlayerKeyboardControls, {ref: threeApp.getKeyboardControls()});
-player.addComponent(PlayerPointerControls, {ref: threeApp.getPointerControls()});
-player.addComponent(PlayerCamera, {ref: threeApp.getCamera()});
+
+const player = world.createEntity()
+    .addComponent(PlayerTag)
+    .addComponent(PlayerInputs, {
+        pointerInputs: threeApp.getPointerInputs(),
+        //keyboardInputs: threeApp.getKeyboardInputs(),
+    })
+    .addComponent(PlayerCamera, {
+        ref: threeApp.getCamera(),
+    })
+    .addComponent(SceneModel, {
+        ref: playerObj,
+    });
 
 
 ////////////////////////////////////////////////////////////////

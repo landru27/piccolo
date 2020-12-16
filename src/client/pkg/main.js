@@ -9,23 +9,24 @@ import { Statistics } from './statistics.js';
 
 import { Object3D, Vector3, Color } from 'three';
 import { AxesHelper, BoxGeometry, MeshPhongMaterial, Mesh } from 'three';
+import { HemisphereLight } from 'three';
 
 import { World } from 'ecsy';
 
 import { SceneModel } from './components/SceneModel.js';
-import { PointerInputs } from './components/PointerInputs.js';
-import { KeyboardInputs } from './components/KeyboardInputs.js';
 import { PlayerTag, PlayerCamera } from './components/Player.js';
 import { PlayerInputs } from './components/PlayerInputs.js';
 
 //import { PlayerAction } from './systems/PlayerAction.js';
 import { PlayerCameraMotion } from './systems/PlayerCameraMotion.js';
 
+import { PolyTheRobot } from './geomeshes/PolyTheRobot.js';
+
 
 ////////////////////////////////////////////////////////////////
 ////////  initialize three.js
 
-const config = new Config;
+const config = new Config();
 
 const threeApp = new ThreeApp(config, {
     devicePixelRatio: window.devicePixelRatio,
@@ -38,7 +39,7 @@ const threeApp = new ThreeApp(config, {
     fieldOfVision: config.app.fieldOfVision,
     nearClippingPlane: config.app.nearClippingPlane,
     farClippingPlane: config.app.farClippingPlane,
-    cameraPosition: new Vector3(32, 32, 32),
+    cameraPosition: new Vector3(12, 12, 12),
     cameraLookAt: new Vector3(0, 0, 0),
 });
 
@@ -82,10 +83,14 @@ world.registerSystem(PlayerCameraMotion);
 
 // create something to show -- will move to ECS
 threeApp.getScene().add(new AxesHelper(8));
-threeApp.getScene().add(new Mesh(new BoxGeometry(1, 1, 1), new MeshPhongMaterial({color: 0x7f7f7f})));
+//threeApp.getScene().add(new Mesh(new BoxGeometry(1, 1, 1), new MeshPhongMaterial({color: 0x7f7f7f})));
+
+// until we get the sun cycle going ...
+threeApp.getScene().add(new HemisphereLight(0xbbbbbb, 0x444444, 1));
 
 // the player entity
-const playerObj = new Object3D();
+const playerObj = new PolyTheRobot();
+threeApp.getScene().add(playerObj.sceneObject);
 
 const player = world.createEntity()
     .addComponent(PlayerTag)

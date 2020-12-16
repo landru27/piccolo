@@ -1,0 +1,14 @@
+////////////////////////////////////////////////////////////////
+////////  imports
+
+import { Component, Types } from 'ecsy';
+
+
+////////////////////////////////////////////////////////////////
+////////  component
+
+export class KeyboardInputs extends Component {}
+
+KeyboardInputs.schema = {
+    comingsoon: { type: Types.Number },
+};

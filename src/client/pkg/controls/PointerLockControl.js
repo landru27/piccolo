@@ -11,12 +11,13 @@
 //
 ////////////////////////////////////////////////////////////////
 
-const PointerLockControl = function(src, dest) {
+const PointerLockControl = function(cfg, src, dest) {
 
     const scope = this;
 
     //////// initialization
 
+    this.config = cfg;
     this.domSource = src;
     this.dataSink = dest;
     this.domOverlay = null;
@@ -59,15 +60,35 @@ const PointerLockControl = function(src, dest) {
         let mouseMovementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
         let mouseMovementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
 
-        //console.log('PointerLock::mousemove : ' + mouseMovementX + ', ' + mouseMovementY);
+        scope.dataSink.mouseMovementX = mouseMovementX * scope.config.lookSensativity;
+        scope.dataSink.mouseMovementY = mouseMovementY * scope.config.lookSensativity;
+    }
 
-        scope.dataSink.mouseMovementX = mouseMovementX;
-        scope.dataSink.mouseMovementY = mouseMovementY;
+    function onMouseClick(event) {
+        if (!scope.isLocked) { return; }
+
+        let whichButton = 'non';
+        switch (event.button) {
+            case 0:
+                whichButton = 'leftClick';
+                break;
+            case 1:
+                whichButton = 'middleClick';
+                break;
+            case 2:
+                whichButton = 'rightClick';
+                break;
+            default:
+                return;
+        }
+
+        scope.dataSink.mouseButtonClick = scope.config[whichButton];
     }
 
     this.domSource.ownerDocument.addEventListener('pointerlockchange', onPointerlockChange, false);
     this.domSource.ownerDocument.addEventListener('pointerlockerror', onPointerlockError, false);
     this.domSource.ownerDocument.addEventListener('mousemove', onMouseMove, false);
+    this.domSource.ownerDocument.addEventListener('click', onMouseClick, false);
 };
 
 export { PointerLockControl };

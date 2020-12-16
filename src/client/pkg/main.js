@@ -3,6 +3,7 @@
 
 import * as Presentation from './utility/presentation.js';
 
+import { Config } from './config.js';
 import { ThreeApp } from './threeApp.js';
 import { Statistics } from './statistics.js';
 
@@ -13,7 +14,7 @@ import { World } from 'ecsy';
 
 import { SceneModel } from './components/SceneModel.js';
 import { PointerInputs } from './components/PointerInputs.js';
-//import { KeyboardInputs } from './components/KeyboardInputs.js';
+import { KeyboardInputs } from './components/KeyboardInputs.js';
 import { PlayerTag, PlayerCamera } from './components/Player.js';
 import { PlayerInputs } from './components/PlayerInputs.js';
 
@@ -24,17 +25,19 @@ import { PlayerCameraMotion } from './systems/PlayerCameraMotion.js';
 ////////////////////////////////////////////////////////////////
 ////////  initialize three.js
 
-const threeApp = new ThreeApp({
+const config = new Config;
+
+const threeApp = new ThreeApp(config, {
     devicePixelRatio: window.devicePixelRatio,
-    appContainerDOMElement: 'appContainer',
-    appOverlayDOMElement: 'appOverlay',
+    appContainerDOMElement: config.app.containerDOMElement,
+    appOverlayDOMElement: config.app.overlayDOMElement,
     pointerControlDOMElement: document.body,
     keyboardControlDOMElement: document,
     clearColor: 0x000000,
-    background: new Color('skyblue'),
-    fieldOfVision: 35,
-    nearClippingPlane: 0.1,
-    farClippingPlane: 1000,
+    background: new Color(config.app.backgroundColor),
+    fieldOfVision: config.app.fieldOfVision,
+    nearClippingPlane: config.app.nearClippingPlane,
+    farClippingPlane: config.app.farClippingPlane,
     cameraPosition: new Vector3(32, 32, 32),
     cameraLookAt: new Vector3(0, 0, 0),
 });
@@ -88,7 +91,7 @@ const player = world.createEntity()
     .addComponent(PlayerTag)
     .addComponent(PlayerInputs, {
         pointerInputs: threeApp.getPointerInputs(),
-        //keyboardInputs: threeApp.getKeyboardInputs(),
+        keyboardInputs: threeApp.getKeyboardInputs(),
     })
     .addComponent(PlayerCamera, {
         ref: threeApp.getCamera(),

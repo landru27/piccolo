@@ -183,6 +183,7 @@ Statistics.InfoPanel = function () {
 export { Statistics };
 
 ////////////////////////////////////////////////////////////////
+//  
 //  The MIT License
 //  
 //  Copyright © 2009-2016 stats.js authors

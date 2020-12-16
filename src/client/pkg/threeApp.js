@@ -91,38 +91,38 @@ const ThreeApp = function(config, options) {
         return {
             width: viewportWidth,
             height: viewportHeight,
-        }
+        };
     }
 
     ////////////////////////////////
 
     this.getPointerControl = function() {
         return pointerControl;
-    }
+    };
 
     this.getPointerInputs = function() {
         return pointerInputs;
-    }
+    };
 
     this.getKeyboardControl = function() {
         return keyboardControl;
-    }
+    };
 
     this.getKeyboardInputs = function() {
         return keyboardInputs;
-    }
+    };
 
     this.getScene = function() {
         return scene;
-    }
+    };
 
     this.getCamera = function() {
         return camera;
-    }
+    };
 
     this.getRenderer = function() {
         return renderer;
-    }
+    };
 
     ////////////////////////////////
 
@@ -135,11 +135,11 @@ const ThreeApp = function(config, options) {
         camera.updateProjectionMatrix();
 
         renderer.setSize(viewportWidth, viewportHeight);
-    }
+    };
 
     this.render = function() {
         renderer.render(scene, camera);
-    }
+    };
 };
 
 export { ThreeApp };

@@ -8,18 +8,21 @@ import { Clock, Scene, WebGLRenderer } from 'three';
 import { PerspectiveCamera } from 'three';
 
 import { PointerLockControl } from './controls/PointerLockControl.js';
-//import { KeyboardControl } from './controls/KeyboardControl.js';
+import { KeyboardControl } from './controls/KeyboardControl.js';
 
 import { PointerInputs } from './components/PointerInputs.js';
-//import { KeyboardInputs } from './components/KeyboardInputs.js';
+import { KeyboardInputs } from './components/KeyboardInputs.js';
 
 
 ////////////////////////////////////////////////////////////////
 ////////  the top level elements of a running three.js application
 
-const ThreeApp = function(options) {
+const ThreeApp = function(config, options) {
 
     const scope = this;
+
+    // configuration settings
+    const appConfig = config;
 
     // use the provided or default values
     let devicePixelRatio = setDefaultIfNoValue(options.devicePixelRatio, 1);
@@ -44,9 +47,9 @@ const ThreeApp = function(options) {
     // user controls
     let appOverlay = document.getElementById(appOverlayDOMElement);
     let pointerInputs = new PointerInputs();
-    let pointerControl = new PointerLockControl(pointerControlDOMElement, pointerInputs);
-    //let keyboardInputs = new KeyboardInputs();
-    //let keyboardControl = new KeyboardControl(keyboardControlDOMElement, keyboardInputs);
+    let pointerControl = new PointerLockControl(appConfig.pointer, pointerControlDOMElement, pointerInputs);
+    let keyboardInputs = new KeyboardInputs();
+    let keyboardControl = new KeyboardControl(appConfig.keyboard, keyboardControlDOMElement, keyboardInputs);
 
     // timing clock
     let clock = new Clock();
@@ -101,13 +104,13 @@ const ThreeApp = function(options) {
         return pointerInputs;
     }
 
-//    this.getKeyboardControl = function() {
-//        return keyboardControl;
-//    }
-//
-//    this.getKeyboardInputs = function() {
-//        return keyboardInputs;
-//    }
+    this.getKeyboardControl = function() {
+        return keyboardControl;
+    }
+
+    this.getKeyboardInputs = function() {
+        return keyboardInputs;
+    }
 
     this.getScene = function() {
         return scene;

@@ -36,13 +36,18 @@ export class PlayerCameraMotion extends System {
         this.rotateFromPointerMotion(pointerInput.mouseMovementX, pointerInput.mouseMovementY, camera.quaternion);
         pointerInput.mouseMovementX = 0;
         pointerInput.mouseMovementY = 0;
+
+        if (pointerInput.mouseButtonClick != '') {
+            console.log(pointerInput.mouseButtonClick);
+            pointerInput.mouseButtonClick = '';
+        }
     }
 
     rotateFromPointerMotion(x, y, q) {
         this.euler.setFromQuaternion(q);
 
-        this.euler.y -= x * 0.002;
-        this.euler.x -= y * 0.002;
+        this.euler.y -= x;
+        this.euler.x -= y;
         this.euler.x = Math.max(this.limitMaxPolarAngle, Math.min(this.limitMinPolarAngle, this.euler.x));
 
         q.setFromEuler(this.euler);

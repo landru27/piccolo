@@ -12,3 +12,5 @@ export class SceneModel extends Component {}
 SceneModel.schema = {
     ref: { type: Types.Ref }
 };
+
+////////////////////////////////////////////////////////////////

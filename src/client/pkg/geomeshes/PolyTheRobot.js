@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { Group, Shape } from 'three';
+import { Group } from 'three';
 import { CylinderBufferGeometry } from 'three';
 import { MeshPhongMaterial, Mesh } from 'three';
 

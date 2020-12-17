@@ -7,7 +7,7 @@ import { Config } from './config.js';
 import { ThreeApp } from './threeApp.js';
 import { Statistics } from './statistics.js';
 
-import { Object3D, Vector3, Color } from 'three';
+import { Vector3, Color } from 'three';
 import { AxesHelper, BoxGeometry, MeshPhongMaterial, Mesh } from 'three';
 import { HemisphereLight } from 'three';
 
@@ -84,7 +84,7 @@ world.registerSystem(PlayerCameraMotion);
 
 // create something to show -- will move to ECS
 threeApp.getScene().add(new AxesHelper(8));
-//threeApp.getScene().add(new Mesh(new BoxGeometry(1, 1, 1), new MeshPhongMaterial({color: 0x7f7f7f})));
+threeApp.getScene().add(new Mesh(new BoxGeometry(1, 1, 1), new MeshPhongMaterial({color: 0x7f7f7f})));
 
 // until we get the sun cycle going ...
 threeApp.getScene().add(new HemisphereLight(0xbbbbbb, 0x444444, 1));

@@ -3,7 +3,7 @@
 
 import { setDefaultIfNoValue } from './utility/comparison.js';
 
-import { Object3D, Vector3, Color } from 'three';
+import { Vector3, Color } from 'three';
 import { Clock, Scene, WebGLRenderer } from 'three';
 import { PerspectiveCamera } from 'three';
 

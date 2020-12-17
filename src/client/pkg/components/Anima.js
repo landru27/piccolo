@@ -1,0 +1,19 @@
+////////////////////////////////////////////////////////////////
+////////  imports
+
+import { Component, Types } from 'ecsy';
+import { Vector3Type } from './types.js';
+
+
+////////////////////////////////////////////////////////////////
+////////  component
+
+export class Anima extends Component {}
+
+Anima.schema = {
+    fooboo: { type: Types.Number },
+    acceleration: { type: Vector3Type },
+    velocity: { type: Vector3Type },
+};
+
+////////////////////////////////////////////////////////////////

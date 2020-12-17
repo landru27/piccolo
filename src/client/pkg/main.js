@@ -14,11 +14,13 @@ import { HemisphereLight } from 'three';
 import { World } from 'ecsy';
 
 import { SceneModel } from './components/SceneModel.js';
+import { Anima } from './components/Anima.js';
 import { PlayerTag, PlayerCamera } from './components/Player.js';
 import { PlayerInputs } from './components/PlayerInputs.js';
 
-//import { PlayerAction } from './systems/PlayerAction.js';
+import { PlayerAction } from './systems/PlayerAction.js';
 import { PlayerCameraMotion } from './systems/PlayerCameraMotion.js';
+import { Motion } from './systems/Motion.js';
 
 import { PolyTheRobot } from './geomeshes/PolyTheRobot.js';
 
@@ -39,7 +41,7 @@ const threeApp = new ThreeApp(config, {
     fieldOfVision: config.app.fieldOfVision,
     nearClippingPlane: config.app.nearClippingPlane,
     farClippingPlane: config.app.farClippingPlane,
-    cameraPosition: new Vector3(12, 12, 12),
+    cameraPosition: new Vector3(6, 3, 6),
     cameraLookAt: new Vector3(0, 0, 0),
 });
 
@@ -59,11 +61,10 @@ const world = new World();
 
 //world.registerComponent(ThreeAppRef);
 world.registerComponent(SceneModel);
+world.registerComponent(Anima);
 world.registerComponent(PlayerTag);
 world.registerComponent(PlayerInputs);
 world.registerComponent(PlayerCamera);
-//world.registerComponent(Propulsion);
-//world.registerComponent(Velocity);
 //world.registerComponent(AmbientLight);
 //world.registerComponent(HemisphereLight);
 //world.registerComponent(DirectionalLight);
@@ -71,11 +72,11 @@ world.registerComponent(PlayerCamera);
 //world.registerComponent(MoonCycle);
 //world.registerComponent(StarCycle);
 
-//world.registerSystem(PlayerAction);
-world.registerSystem(PlayerCameraMotion);
-//world.registerSystem(CelestialCycle);
-//world.registerSystem(Motion);
 //world.registerSystem(Terrain);
+//world.registerSystem(CelestialCycle);
+world.registerSystem(Motion);
+world.registerSystem(PlayerAction);
+world.registerSystem(PlayerCameraMotion);
 
 
 ////////////////////////////////////////////////////////////////
@@ -103,6 +104,10 @@ const player = world.createEntity()
     })
     .addComponent(SceneModel, {
         ref: playerObj,
+    })
+    .addComponent(Anima, {
+        acceleration: new Vector3(0, 0, 1),
+        velocity: new Vector3(0, 0, 0),
     });
 
 

@@ -2,15 +2,18 @@
 ////////  imports
 
 import { Component, Types } from 'ecsy';
+import { Vector3Type } from './types.js';
 
 
 ////////////////////////////////////////////////////////////////
 ////////  component
 
-export class SceneModel extends Component {}
+export class Anima extends Component {}
 
-SceneModel.schema = {
-    ref: { type: Types.Ref }
+Anima.schema = {
+    fooboo: { type: Types.Number },
+    acceleration: { type: Vector3Type },
+    velocity: { type: Vector3Type },
 };
 
 ////////////////////////////////////////////////////////////////

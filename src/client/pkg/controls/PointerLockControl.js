@@ -28,7 +28,7 @@ const PointerLockControl = function(cfg, src, dest) {
     this.initiatePointerLock = function(elem) {
         scope.domOverlay = elem;
         scope.domSource.requestPointerLock();
-    }
+    };
 
     this.relinquishPointerLock = function() {
         scope.domSource.ownerDocument.removeEventListener('pointerlockchange', onPointerlockChange, false);
@@ -36,7 +36,7 @@ const PointerLockControl = function(cfg, src, dest) {
         scope.domSource.ownerDocument.removeEventListener('mousemove', onMouseMove, false);
 
         scope.domSource.ownerDocument.exitPointerLock();
-    }
+    };
 
     function onPointerlockChange() {
         if (scope.domSource.ownerDocument.pointerLockElement === scope.domSource) {
@@ -69,17 +69,17 @@ const PointerLockControl = function(cfg, src, dest) {
 
         let whichButton = 'non';
         switch (event.button) {
-            case 0:
-                whichButton = 'leftClick';
-                break;
-            case 1:
-                whichButton = 'middleClick';
-                break;
-            case 2:
-                whichButton = 'rightClick';
-                break;
-            default:
-                return;
+        case 0:
+            whichButton = 'leftClick';
+            break;
+        case 1:
+            whichButton = 'middleClick';
+            break;
+        case 2:
+            whichButton = 'rightClick';
+            break;
+        default:
+            return;
         }
 
         scope.dataSink.mouseButtonClick = scope.config[whichButton];
@@ -94,6 +94,7 @@ const PointerLockControl = function(cfg, src, dest) {
 export { PointerLockControl };
 
 ////////////////////////////////////////////////////////////////
+//  
 //  The MIT License
 //  
 //  Copyright © 2010-2020 three.js authors

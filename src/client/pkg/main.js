@@ -22,6 +22,7 @@ import { PlayerAction } from './systems/PlayerAction.js';
 import { PlayerCameraMotion } from './systems/PlayerCameraMotion.js';
 import { Motion } from './systems/Motion.js';
 
+import { AddABunchOfCubes } from './geomeshes/AddABunchOfCubes.js';
 import { PolyTheRobot } from './geomeshes/PolyTheRobot.js';
 
 
@@ -85,6 +86,7 @@ world.registerSystem(PlayerCameraMotion);
 // create something to show -- will move to ECS
 threeApp.getScene().add(new AxesHelper(8));
 threeApp.getScene().add(new Mesh(new BoxGeometry(1, 1, 1), new MeshPhongMaterial({color: 0x7f7f7f})));
+AddABunchOfCubes(threeApp.getScene(), 128, 128);
 
 // until we get the sun cycle going ...
 threeApp.getScene().add(new HemisphereLight(0xbbbbbb, 0x444444, 1));
@@ -106,7 +108,7 @@ const player = world.createEntity()
         ref: playerObj,
     })
     .addComponent(Anima, {
-        acceleration: new Vector3(0, 0, 1),
+        acceleration: new Vector3(0, 0, 0),
         velocity: new Vector3(0, 0, 0),
     });
 

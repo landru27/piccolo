@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { Vector3 } from 'three';
+import { Vector3, Quaternion } from 'three';
 
 import { System } from 'ecsy';
 
@@ -18,6 +18,9 @@ export class Motion extends System {
 
         this.drag = 0.01;
         this.friction = 0.96;
+
+        this.direction = new Quaternion();
+        this.movement = new Vector3();
     }
 
     execute(delta) {
@@ -44,10 +47,11 @@ export class Motion extends System {
             aniref.velocity.multiplyScalar(1 - (this.friction * delta));
 
             // movement
-            const deltaVelocity = new Vector3();
-            deltaVelocity.copy(aniref.velocity);
-            deltaVelocity.multiplyScalar(delta);
-            objref.position.add(deltaVelocity);
+            objref.getWorldQuaternion(this.direction);
+            this.movement.copy(aniref.velocity);
+            this.movement.multiplyScalar(delta);
+            this.movement.applyQuaternion(this.direction);
+            objref.position.add(this.movement);
         });
     }
 }

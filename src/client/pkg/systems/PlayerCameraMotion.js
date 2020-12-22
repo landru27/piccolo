@@ -15,6 +15,8 @@ import { SceneModel } from '../components/SceneModel.js';
 export class PlayerCameraMotion extends System {
     init() {
         this.scope = this;
+
+        this.follow = new Vector3();
     }
 
     execute(delta) {
@@ -22,7 +24,11 @@ export class PlayerCameraMotion extends System {
         const objref = player.getComponent(SceneModel).ref.sceneObject;
         const camera = player.getComponent(PlayerCamera).ref;
 
-        camera.lookAt(objref.position);
+        objref.getObjectByName('cameraFollow3rdPerson').getWorldPosition(this.follow);
+        camera.position.lerp(this.follow, 0.1);
+
+        objref.getObjectByName('head').getWorldPosition(this.follow);
+        camera.lookAt(this.follow);
     }
 }
 

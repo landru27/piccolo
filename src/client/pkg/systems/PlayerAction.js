@@ -102,9 +102,16 @@ export class PlayerAction extends System {
     rotateFromPointerMotion(x, y, q) {
         this.euler.setFromQuaternion(q);
 
+        // yaw
         this.euler.y -= x;
+
+        // pitch - normal
+        this.euler.x += y;
+        // pitch - look inversion
         //this.euler.x -= y;
-        this.euler.x = 0;
+        // pitch - none, for surface travel
+        //this.euler.x = 0;
+
         this.euler.x = Math.max(this.limitMaxPolarAngle, Math.min(this.limitMinPolarAngle, this.euler.x));
 
         q.setFromEuler(this.euler);

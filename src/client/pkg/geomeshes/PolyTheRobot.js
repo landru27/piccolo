@@ -23,6 +23,7 @@ const PolyTheRobot = function() {
     let colorC = new Color('steelblue');
 
     const iota = new Group();
+    iota.lookAt(-1, 0, -1);
 
     // body
     geometry = new CylinderBufferGeometry(0.4, 0.3, 1.1, 3, 1);
@@ -68,7 +69,7 @@ const PolyTheRobot = function() {
 
     // camera follow
     spot = new Object3D();
-    spot.position.set(-2, 2.4, -5);
+    spot.position.set(-1, 2.4, -5);
     spot.name = 'cameraFollow3rdPerson';
     iota.add(spot);
 

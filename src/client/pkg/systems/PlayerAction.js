@@ -31,6 +31,7 @@ export class PlayerAction extends System {
 
     execute(delta) {
         const player = this.queries.player.results[0];
+        const modref = player.getMutableComponent(SceneModel).ref;
         const objref = player.getMutableComponent(SceneModel).ref.sceneObject;
         const aniref = player.getMutableComponent(Anima);
 
@@ -52,9 +53,7 @@ export class PlayerAction extends System {
 
         // simple animation
         this.vec.copy(aniref.velocity);
-        this.vec.normalize();
-        this.quat.setFromUnitVectors(new Vector3(0, 0, 1), this.vec);
-        objref.getObjectByName('leg').setRotationFromQuaternion(this.quat);
+        modref.animation(this.vec);
     }
 
     moveFromKeyboardCommands(keyboardInput, aniref) {

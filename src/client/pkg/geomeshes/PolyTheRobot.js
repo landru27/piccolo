@@ -2,6 +2,7 @@
 ////////  imports
 
 import { Object3D, Group, Color } from 'three';
+import { Vector3, Quaternion } from 'three';
 import { BoxGeometry } from 'three';
 import { CylinderBufferGeometry } from 'three';
 import { MeshPhongMaterial, Mesh } from 'three';
@@ -18,9 +19,11 @@ const PolyTheRobot = function() {
     let mesh = null;
     let spot = null;
 
-    let colorA = 0xb0c4de;
-    let colorB = 0xff7f7f;
-    let colorC = new Color('steelblue');
+    const colorA = 0xb0c4de;
+    const colorB = 0xff7f7f;
+    const colorC = new Color('steelblue');
+
+    const rotation = new Quaternion();
 
     const iota = new Group();
     iota.lookAt(-1, 0, -1);
@@ -75,6 +78,12 @@ const PolyTheRobot = function() {
 
     return {
         sceneObject: iota,
+
+        animation: function(velocity) {
+            velocity.normalize();
+            rotation.setFromUnitVectors(new Vector3(0, 0, 1), velocity);
+            iota.getObjectByName('leg').setRotationFromQuaternion(rotation);
+        },
     };
 };
 

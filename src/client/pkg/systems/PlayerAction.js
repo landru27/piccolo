@@ -49,14 +49,14 @@ export class PlayerAction extends System {
 
         // apply commands from keyboard input
         const keyboardInput = player.getComponent(PlayerInputs).keyboardInputs;
-        this.moveFromKeyboardCommands(keyboardInput, aniref);
+        this.moveFromKeyboardCommands(keyboardInput, modref, aniref);
 
         // simple animation
         this.vec.copy(aniref.velocity);
         modref.animation(this.vec);
     }
 
-    moveFromKeyboardCommands(keyboardInput, aniref) {
+    moveFromKeyboardCommands(keyboardInput, modref, aniref) {
         if (keyboardInput.slewXPos == true) { console.log('slewXPos'); }
         if (keyboardInput.slewXNeg == true) { console.log('slewXNeg'); }
         if (keyboardInput.slewYPos == true) { console.log('slewYPos'); }
@@ -72,23 +72,28 @@ export class PlayerAction extends System {
         if (keyboardInput.rotateZNeg == true) { console.log('rotateZNeg'); }
 
         if (keyboardInput.accelerateAhead == true) {
-            console.log('accelerateAhead');
-            aniref.velocity = aniref.velocity.add(new Vector3(0, 0, 1));
+            aniref.acceleration.setZ(modref.motionParameters.accelerationForward);
+        } else if (keyboardInput.accelerateBack == true) {
+            aniref.acceleration.setZ(modref.motionParameters.accelerationBackward);
+        } else {
+            aniref.acceleration.setZ(0);
         }
-        if (keyboardInput.accelerateBack == true) {
-            console.log('accelerateBack');
-            aniref.velocity = aniref.velocity.add(new Vector3(0, 0, -1));
-        }
+
         if (keyboardInput.accelerateLeft == true) {
-            console.log('accelerateLeft');
-            aniref.velocity = aniref.velocity.add(new Vector3(1, 0, 0));
+            aniref.acceleration.setX(modref.motionParameters.accelerationLeftward);
+        } else if (keyboardInput.accelerateRight == true) {
+            aniref.acceleration.setX(modref.motionParameters.accelerationRightward);
+        } else {
+            aniref.acceleration.setX(0);
         }
-        if (keyboardInput.accelerateRight == true) {
-            console.log('accelerateRight');
-            aniref.velocity = aniref.velocity.add(new Vector3(-1, 0, 0));
+
+        if (keyboardInput.accelerateUp == true) {
+            aniref.acceleration.setY(modref.motionParameters.accelerationUpward);
+        } else if (keyboardInput.accelerateDown == true) {
+            aniref.acceleration.setY(modref.motionParameters.accelerationDownward);
+        } else {
+            aniref.acceleration.setY(0);
         }
-        if (keyboardInput.accelerateUp == true) { console.log('accelerateUp'); }
-        if (keyboardInput.accelerateDown == true) { console.log('accelerateDown'); }
 
         if (keyboardInput.boostAcceleration == true) { console.log('boostAcceleration'); }
         if (keyboardInput.decelerateAll == true) { console.log('decelerateAll'); }

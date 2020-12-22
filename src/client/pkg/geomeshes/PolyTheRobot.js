@@ -72,12 +72,21 @@ const PolyTheRobot = function() {
 
     // camera follow
     spot = new Object3D();
-    spot.position.set(-1, 2.4, -5);
+    spot.position.set(-1, 2.4, -6);
     spot.name = 'cameraFollow3rdPerson';
     iota.add(spot);
 
     return {
         sceneObject: iota,
+
+        motionParameters: {
+            accelerationForward: 10,
+            accelerationBackward: -5,
+            accelerationLeftward: 4,
+            accelerationRightward: -4,
+            accelerationUpward: 0,
+            accelerationDownward: 0,
+        },
 
         animation: function(velocity) {
             velocity.normalize();

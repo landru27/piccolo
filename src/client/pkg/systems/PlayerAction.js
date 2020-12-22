@@ -27,6 +27,12 @@ export class PlayerAction extends System {
         this.euler = new Euler(0, 0, 0, 'YXZ');
         this.vec = new Vector3();
         this.quat = new Quaternion();
+
+        this.slewX = new Vector3(0.1, 0, 0);
+        this.slewY = new Vector3(0, 0.1, 0);
+        this.slewZ = new Vector3(0, 0, 0.1);
+        this.slewR =  0.01745329251;
+        this.slewQ = -0.01745329251;
     }
 
     execute(delta) {
@@ -57,19 +63,19 @@ export class PlayerAction extends System {
     }
 
     moveFromKeyboardCommands(keyboardInput, modref, aniref) {
-        if (keyboardInput.slewXPos == true) { console.log('slewXPos'); }
-        if (keyboardInput.slewXNeg == true) { console.log('slewXNeg'); }
-        if (keyboardInput.slewYPos == true) { console.log('slewYPos'); }
-        if (keyboardInput.slewYNeg == true) { console.log('slewYNeg'); }
-        if (keyboardInput.slewZPos == true) { console.log('slewZPos'); }
-        if (keyboardInput.slewZNeg == true) { console.log('slewZNeg'); }
+        if (keyboardInput.slewXPos == true) { modref.sceneObject.position.add(this.slewX); }
+        if (keyboardInput.slewXNeg == true) { modref.sceneObject.position.sub(this.slewX); }
+        if (keyboardInput.slewYPos == true) { modref.sceneObject.position.add(this.slewY); }
+        if (keyboardInput.slewYNeg == true) { modref.sceneObject.position.sub(this.slewY); }
+        if (keyboardInput.slewZPos == true) { modref.sceneObject.position.add(this.slewZ); }
+        if (keyboardInput.slewZNeg == true) { modref.sceneObject.position.sub(this.slewZ); }
 
-        if (keyboardInput.rotateXPos == true) { console.log('rotateXPos'); }
-        if (keyboardInput.rotateXNeg == true) { console.log('rotateXNeg'); }
-        if (keyboardInput.rotateYPos == true) { console.log('rotateYPos'); }
-        if (keyboardInput.rotateYNeg == true) { console.log('rotateYNeg'); }
-        if (keyboardInput.rotateZPos == true) { console.log('rotateZPos'); }
-        if (keyboardInput.rotateZNeg == true) { console.log('rotateZNeg'); }
+        if (keyboardInput.rotateXPos == true) { modref.sceneObject.rotateX(this.slewR); }
+        if (keyboardInput.rotateXNeg == true) { modref.sceneObject.rotateX(this.slewQ); }
+        if (keyboardInput.rotateYPos == true) { modref.sceneObject.rotateY(this.slewR); }
+        if (keyboardInput.rotateYNeg == true) { modref.sceneObject.rotateY(this.slewQ); }
+        if (keyboardInput.rotateZPos == true) { modref.sceneObject.rotateZ(this.slewR); }
+        if (keyboardInput.rotateZNeg == true) { modref.sceneObject.rotateZ(this.slewQ); }
 
         if (keyboardInput.accelerateAhead == true) {
             aniref.acceleration.setZ(modref.motionParameters.accelerationForward);

@@ -27,6 +27,7 @@ const PolyTheRobot = function() {
 
     const iota = new Group();
     iota.lookAt(-1, 0, -1);
+    iota.position.set(2, 0, 2);
 
     // body
     geometry = new CylinderBufferGeometry(0.4, 0.3, 1.1, 3, 1);

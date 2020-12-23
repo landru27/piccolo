@@ -21,6 +21,7 @@ const FlyBoi = function() {
 
     const iota = new Group();
     iota.lookAt(0, 0, 1);
+    iota.position.set(32, 0, 32);
 
     // canopy
     geometry = new CylinderBufferGeometry(0.4, 0.8, 0.2, 3, 1);

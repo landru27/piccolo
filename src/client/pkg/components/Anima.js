@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { Component, Types } from 'ecsy';
+import { Component } from 'ecsy';
 import { Vector3Type } from './types.js';
 
 
@@ -11,7 +11,6 @@ import { Vector3Type } from './types.js';
 export class Anima extends Component {}
 
 Anima.schema = {
-    fooboo: { type: Types.Number },
     acceleration: { type: Vector3Type },
     velocity: { type: Vector3Type },
 };

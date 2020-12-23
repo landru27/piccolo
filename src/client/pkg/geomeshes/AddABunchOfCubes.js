@@ -3,9 +3,8 @@
 
 import { prng } from '../utility/random.js';
 
-import { Object3D, Group, Color } from 'three';
+import { Color } from 'three';
 import { BoxGeometry } from 'three';
-import { CylinderBufferGeometry } from 'three';
 import { MeshPhongMaterial, Mesh } from 'three';
 
 

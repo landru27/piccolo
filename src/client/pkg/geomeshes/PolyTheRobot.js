@@ -3,7 +3,6 @@
 
 import { Object3D, Group, Color } from 'three';
 import { Vector3, Quaternion } from 'three';
-import { BoxGeometry } from 'three';
 import { CylinderBufferGeometry } from 'three';
 import { MeshPhongMaterial, Mesh } from 'three';
 

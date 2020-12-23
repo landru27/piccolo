@@ -2,7 +2,6 @@
 ////////  imports
 
 import { Component, Types } from 'ecsy';
-import { Vector3Type } from './types.js';
 
 
 ////////////////////////////////////////////////////////////////

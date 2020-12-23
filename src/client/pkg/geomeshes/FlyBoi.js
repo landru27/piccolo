@@ -1,11 +1,8 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { Object3D, Group, Color } from 'three';
-import { Euler, Vector3, Quaternion } from 'three';
-import { BoxGeometry } from 'three';
+import { Object3D, Group } from 'three';
 import { CylinderBufferGeometry } from 'three';
-import { ConeBufferGeometry } from 'three';
 import { MeshPhongMaterial, Mesh } from 'three';
 
 
@@ -21,10 +18,6 @@ const FlyBoi = function() {
     let spot = null;
 
     const colorA = 0xb0c4de;
-    const colorB = 0xff7f7f;
-    const colorC = new Color('steelblue');
-
-    const rotation = new Quaternion();
 
     const iota = new Group();
     iota.lookAt(0, 0, 1);

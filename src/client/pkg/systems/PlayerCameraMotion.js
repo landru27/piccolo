@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { Euler, Vector3, Quaternion } from 'three';
+import { Vector3, Quaternion } from 'three';
 
 import { System } from 'ecsy';
 

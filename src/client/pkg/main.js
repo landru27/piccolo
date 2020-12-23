@@ -24,6 +24,7 @@ import { Motion } from './systems/Motion.js';
 
 import { AddABunchOfCubes } from './geomeshes/AddABunchOfCubes.js';
 import { PolyTheRobot } from './geomeshes/PolyTheRobot.js';
+import { FlyBoi } from './geomeshes/FlyBoi.js';
 
 
 ////////////////////////////////////////////////////////////////
@@ -93,6 +94,7 @@ threeApp.getScene().add(new HemisphereLight(0xbbbbbb, 0x444444, 1));
 
 // the player entity
 const playerObj = new PolyTheRobot();
+//const playerObj = new FlyBoi();
 threeApp.getScene().add(playerObj.sceneObject);
 
 const player = world.createEntity()

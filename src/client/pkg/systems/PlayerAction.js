@@ -25,7 +25,6 @@ export class PlayerAction extends System {
         this.limitMaxPolarAngle = halfPI - maxPolarAngle;
 
         this.euler = new Euler(0, 0, 0, 'YXZ');
-        this.vec = new Vector3();
         this.quat = new Quaternion();
 
         this.slewX = new Vector3(0.1, 0, 0);
@@ -44,6 +43,8 @@ export class PlayerAction extends System {
         // apply mouse movement to scene object rotation
         const pointerInput = player.getComponent(PlayerInputs).pointerInputs;
         this.rotateFromPointerMotion(pointerInput.mouseMovementX, pointerInput.mouseMovementY, objref.quaternion);
+        const pointerX = pointerInput.mouseMovementX;
+        const pointerY = pointerInput.mouseMovementY;
         pointerInput.mouseMovementX = 0;
         pointerInput.mouseMovementY = 0;
 
@@ -58,8 +59,12 @@ export class PlayerAction extends System {
         this.moveFromKeyboardCommands(keyboardInput, modref, aniref);
 
         // simple animation
-        this.vec.copy(aniref.velocity);
-        modref.animation(this.vec);
+        modref.animation({
+            pointerMoveX: pointerX,
+            pointerMoveY: pointerY,
+            objectAcceleration: aniref.acceleration.clone(),
+            objectVelocity: aniref.velocity.clone(),
+        });
     }
 
     moveFromKeyboardCommands(keyboardInput, modref, aniref) {

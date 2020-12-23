@@ -23,6 +23,7 @@ const PolyTheRobot = function() {
     const colorB = 0xff7f7f;
     const colorC = new Color('steelblue');
 
+    const zAxis = new Vector3(0, 0, 1);
     const rotation = new Quaternion();
 
     const iota = new Group();
@@ -88,9 +89,9 @@ const PolyTheRobot = function() {
             accelerationDownward: 0,
         },
 
-        animation: function(velocity) {
-            velocity.normalize();
-            rotation.setFromUnitVectors(new Vector3(0, 0, 1), velocity);
+        animation: function(params) {
+            params.objectVelocity.normalize();
+            rotation.setFromUnitVectors(zAxis, params.objectVelocity);
             iota.getObjectByName('leg').setRotationFromQuaternion(rotation);
         },
     };

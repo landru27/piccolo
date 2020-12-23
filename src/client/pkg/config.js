@@ -35,7 +35,7 @@ const Config = function() {
             ['m', ''],
             ['n', ''],
             ['o', ''],
-            ['p', ''],
+            ['p', 'switchAvatar'],
             ['q', 'slewYPos'],
             ['r', 'BUFFER'],
             ['s', 'accelerateBack'],
@@ -57,7 +57,7 @@ const Config = function() {
             ['Control', ''],
 
             // righthand
-            ['Backspace', ''],
+            ['Backspace', 'toggleDebug'],
             ['Enter', ''],
             ['Alt', ''],
             ['Meta', ''],
@@ -69,11 +69,12 @@ const Config = function() {
             ['ArrowRight', 'slewXPos'],
 
             // navigation-editing group
-            ['Insert', 'rotateZPos'],
+            ['Help', 'rotateZNeg'],
+            ['Insert', 'rotateZNeg'],
             ['Delete', 'rotateYPos'],
             ['Home', 'rotateXPos'],
             ['End', 'rotateXNeg'],
-            ['PageUp', 'rotateZNeg'],
+            ['PageUp', 'rotateZPos'],
             ['PageDown', 'rotateYNeg'],
 
             // numeral
@@ -100,9 +101,10 @@ const Config = function() {
             ['F9', ''],
             ['F10', ''],
             ['F11', ''],
-            ['F12', 'toggleDebug'],
+            ['F12', ''],
 
             // screenshot
+            ['F13', 'screenshot'],
             ['PrintScreen', 'screenshot'],
 
             // punctuation

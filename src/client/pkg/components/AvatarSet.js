@@ -1,18 +1,17 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { Component } from 'ecsy';
-import { Vector3Type } from './types.js';
+import { Component, Types } from 'ecsy';
 
 
 ////////////////////////////////////////////////////////////////
 ////////  component
 
-export class Anima extends Component {}
+export class AvatarSet extends Component {}
 
-Anima.schema = {
-    acceleration: { type: Vector3Type },
-    velocity: { type: Vector3Type },
+AvatarSet.schema = {
+    indx: { type: Types.Number },
+    avatars: { type: Types.Array },
 };
 
 ////////////////////////////////////////////////////////////////

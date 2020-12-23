@@ -2,7 +2,7 @@
 ////////  imports
 
 import { Object3D, Group, Color } from 'three';
-import { BoxGeometry } from 'three';
+import { Vector3, Quaternion } from 'three';
 import { CylinderBufferGeometry } from 'three';
 import { MeshPhongMaterial, Mesh } from 'three';
 
@@ -18,11 +18,16 @@ const PolyTheRobot = function() {
     let mesh = null;
     let spot = null;
 
-    let colorA = 0xb0c4de;
-    let colorB = 0xff7f7f;
-    let colorC = new Color('steelblue');
+    const colorA = 0xb0c4de;
+    const colorB = 0xff7f7f;
+    const colorC = new Color('steelblue');
+
+    const zAxis = new Vector3(0, 0, 1);
+    const rotation = new Quaternion();
 
     const iota = new Group();
+    iota.lookAt(-1, 0, -1);
+    iota.position.set(2, 0, 2);
 
     // body
     geometry = new CylinderBufferGeometry(0.4, 0.3, 1.1, 3, 1);
@@ -68,12 +73,28 @@ const PolyTheRobot = function() {
 
     // camera follow
     spot = new Object3D();
-    spot.position.set(-2, 2.4, -5);
+    spot.position.set(-1, 2.4, -6);
     spot.name = 'cameraFollow3rdPerson';
     iota.add(spot);
 
     return {
         sceneObject: iota,
+
+        motionParameters: {
+            surfaceTravel: true,
+            accelerationForward: 10,
+            accelerationBackward: -5,
+            accelerationLeftward: 4,
+            accelerationRightward: -4,
+            accelerationUpward: 0,
+            accelerationDownward: 0,
+        },
+
+        animation: function(params) {
+            params.objectVelocity.normalize();
+            rotation.setFromUnitVectors(zAxis, params.objectVelocity);
+            iota.getObjectByName('leg').setRotationFromQuaternion(rotation);
+        },
     };
 };
 

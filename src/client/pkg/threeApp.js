@@ -4,7 +4,7 @@
 import { setDefaultIfNoValue } from './utility/comparison.js';
 
 import { Vector3, Color } from 'three';
-import { Clock, Scene, WebGLRenderer } from 'three';
+import { Scene, WebGLRenderer } from 'three';
 import { PerspectiveCamera } from 'three';
 
 import { PointerLockControl } from './controls/PointerLockControl.js';
@@ -50,9 +50,6 @@ const ThreeApp = function(config, options) {
     let pointerControl = new PointerLockControl(appConfig.pointer, pointerControlDOMElement, pointerInputs);
     let keyboardInputs = new KeyboardInputs();
     let keyboardControl = new KeyboardControl(appConfig.keyboard, keyboardControlDOMElement, keyboardInputs);
-
-    // timing clock
-    let clock = new Clock();
 
     // threejs scene
     let scene = new Scene();

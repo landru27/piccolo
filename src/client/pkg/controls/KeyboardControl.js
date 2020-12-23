@@ -14,10 +14,12 @@ const KeyboardControl = function(cfg, src, dest) {
         ['DEFAULT', 'continuous'],
         ['toggleDebug', 'toggle'],
         ['toggleGravity', 'toggle'],
+        ['switchAvatar', 'delay0500'],
         ['screenshot', 'delay0500'],
     ]);
 
     this.commandDelayMap = new Map([
+        ['switchAvatar', 0],
         ['screenshot', 0],
     ]);
 
@@ -36,7 +38,7 @@ const KeyboardControl = function(cfg, src, dest) {
             }
             break;
 
-        case 'delay500':
+        case 'delay0500':
             mark = performance.now();
             diff = mark - scope.commandDelayMap.get(command);
             scope.commandDelayMap.set(command, mark);

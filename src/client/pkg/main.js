@@ -14,6 +14,7 @@ import { HemisphereLight } from 'three';
 import { World } from 'ecsy';
 
 import { SceneModel } from './components/SceneModel.js';
+import { AvatarSet } from './components/AvatarSet.js';
 import { Anima } from './components/Anima.js';
 import { PlayerTag, PlayerCamera } from './components/Player.js';
 import { PlayerInputs } from './components/PlayerInputs.js';
@@ -63,6 +64,7 @@ const world = new World();
 
 //world.registerComponent(ThreeAppRef);
 world.registerComponent(SceneModel);
+world.registerComponent(AvatarSet);
 world.registerComponent(Anima);
 world.registerComponent(PlayerTag);
 world.registerComponent(PlayerInputs);
@@ -93,9 +95,10 @@ AddABunchOfCubes(threeApp.getScene(), 128, 128);
 threeApp.getScene().add(new HemisphereLight(0xbbbbbb, 0x444444, 1));
 
 // the player entity
-const playerObj = new PolyTheRobot();
-//const playerObj = new FlyBoi();
-threeApp.getScene().add(playerObj.sceneObject);
+const playerObjA = new PolyTheRobot();
+const playerObjB = new FlyBoi();
+threeApp.getScene().add(playerObjA.sceneObject);
+threeApp.getScene().add(playerObjB.sceneObject);
 
 const player = world.createEntity()
     .addComponent(PlayerTag)
@@ -106,8 +109,15 @@ const player = world.createEntity()
     .addComponent(PlayerCamera, {
         ref: threeApp.getCamera(),
     })
+    .addComponent(AvatarSet, {
+        indx: 0,
+        avatars: [
+            playerObjA,
+            playerObjB,
+        ],
+    })
     .addComponent(SceneModel, {
-        ref: playerObj,
+        ref: playerObjA,
     })
     .addComponent(Anima, {
         acceleration: new Vector3(0, 0, 0),

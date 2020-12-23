@@ -81,6 +81,7 @@ const PolyTheRobot = function() {
         sceneObject: iota,
 
         motionParameters: {
+            surfaceTravel: true,
             accelerationForward: 10,
             accelerationBackward: -5,
             accelerationLeftward: 4,

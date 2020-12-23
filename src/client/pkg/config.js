@@ -35,7 +35,7 @@ const Config = function() {
             ['m', ''],
             ['n', ''],
             ['o', ''],
-            ['p', ''],
+            ['p', 'switchAvatar'],
             ['q', 'slewYPos'],
             ['r', 'BUFFER'],
             ['s', 'accelerateBack'],

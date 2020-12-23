@@ -61,12 +61,13 @@ const FlyBoi = function() {
         sceneObject: iota,
 
         motionParameters: {
+            surfaceTravel: false,
             accelerationForward: 64,
             accelerationBackward: 0,
             accelerationLeftward: 0,
             accelerationRightward: 0,
             accelerationUpward: 8,
-            accelerationDownward: 16,
+            accelerationDownward: -16,
         },
 
         animation: function(params) {

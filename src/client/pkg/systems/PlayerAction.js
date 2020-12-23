@@ -8,6 +8,7 @@ import { System } from 'ecsy';
 import { PlayerTag } from '../components/Player.js';
 import { PlayerInputs } from '../components/PlayerInputs.js';
 import { SceneModel } from '../components/SceneModel.js';
+import { AvatarSet } from '../components/AvatarSet.js';
 import { Anima } from '../components/Anima.js';
 
 
@@ -42,7 +43,7 @@ export class PlayerAction extends System {
 
         // apply mouse movement to scene object rotation
         const pointerInput = player.getComponent(PlayerInputs).pointerInputs;
-        this.rotateFromPointerMotion(pointerInput.mouseMovementX, pointerInput.mouseMovementY, objref.quaternion);
+        this.rotateFromPointerMotion(pointerInput.mouseMovementX, pointerInput.mouseMovementY, objref, modref);
         const pointerX = pointerInput.mouseMovementX;
         const pointerY = pointerInput.mouseMovementY;
         pointerInput.mouseMovementX = 0;
@@ -57,6 +58,7 @@ export class PlayerAction extends System {
         // apply commands from keyboard input
         const keyboardInput = player.getComponent(PlayerInputs).keyboardInputs;
         this.moveFromKeyboardCommands(keyboardInput, modref, aniref);
+        this.actionFromKeyboardCommands(keyboardInput, player);
 
         // simple animation
         modref.animation({
@@ -105,6 +107,24 @@ export class PlayerAction extends System {
         } else {
             aniref.acceleration.setY(0);
         }
+    }
+
+    actionFromKeyboardCommands(keyboardInput, player) {
+        if (keyboardInput.switchAvatar == true) {
+            console.log('switchAvatar');
+
+            let as = player.getMutableComponent(AvatarSet);
+            let sm = player.getMutableComponent(SceneModel);
+            let i = as.indx;
+            let len = as.avatars.length;
+
+            i++;
+            if (i > (len - 1)) { i = 0; }
+            sm.ref = as.avatars[i];
+            as.indx = i;
+
+            keyboardInput.switchAvatar = false;
+        }
 
         if (keyboardInput.boostAcceleration == true) { console.log('boostAcceleration'); }
         if (keyboardInput.decelerateAll == true) { console.log('decelerateAll'); }
@@ -114,22 +134,23 @@ export class PlayerAction extends System {
         if (keyboardInput.screenshot == true) { console.log('screenshot'); keyboardInput.screenshot = false; }
     }
 
-    rotateFromPointerMotion(x, y, q) {
-        this.euler.setFromQuaternion(q);
+    rotateFromPointerMotion(x, y, obj, mod) {
+        this.euler.setFromQuaternion(obj.quaternion);
 
         // yaw
         this.euler.y -= x;
 
-        // pitch - normal
+        // pitch - normal and look inversion
         this.euler.x += y;
-        // pitch - look inversion
         //this.euler.x -= y;
-        // pitch - none, for surface travel
-        //this.euler.x = 0;
+
+        if (mod.motionParameters.surfaceTravel === true) {
+            this.euler.x = 0;
+        }
 
         this.euler.x = Math.max(this.limitMaxPolarAngle, Math.min(this.limitMinPolarAngle, this.euler.x));
 
-        q.setFromEuler(this.euler);
+        obj.quaternion.setFromEuler(this.euler);
     }
 }
 

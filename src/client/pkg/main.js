@@ -18,14 +18,17 @@ import { AvatarSet } from './components/AvatarSet.js';
 import { Anima } from './components/Anima.js';
 import { PlayerTag, PlayerCamera } from './components/Player.js';
 import { PlayerInputs } from './components/PlayerInputs.js';
+import { Globe } from './components/Globe.js';
+import { GlobePosition } from './components/GlobePosition.js';
 
+import { Terrain } from './systems/Terrain.js';
+import { Motion } from './systems/Motion.js';
 import { PlayerAction } from './systems/PlayerAction.js';
 import { PlayerCameraMotion } from './systems/PlayerCameraMotion.js';
-import { Motion } from './systems/Motion.js';
 
-import { AddABunchOfCubes } from './geomeshes/AddABunchOfCubes.js';
 import { PolyTheRobot } from './geomeshes/PolyTheRobot.js';
 import { FlyBoi } from './geomeshes/FlyBoi.js';
+import { ETE } from './geomeshes/ETE.js';
 
 
 ////////////////////////////////////////////////////////////////
@@ -62,13 +65,14 @@ stats.attachStatsPanel(document.getElementById('world-area'));
 
 const world = new World();
 
-//world.registerComponent(ThreeAppRef);
 world.registerComponent(SceneModel);
 world.registerComponent(AvatarSet);
 world.registerComponent(Anima);
 world.registerComponent(PlayerTag);
 world.registerComponent(PlayerInputs);
 world.registerComponent(PlayerCamera);
+world.registerComponent(Globe);
+world.registerComponent(GlobePosition);
 //world.registerComponent(AmbientLight);
 //world.registerComponent(HemisphereLight);
 //world.registerComponent(DirectionalLight);
@@ -76,7 +80,7 @@ world.registerComponent(PlayerCamera);
 //world.registerComponent(MoonCycle);
 //world.registerComponent(StarCycle);
 
-//world.registerSystem(Terrain);
+world.registerSystem(Terrain);
 //world.registerSystem(CelestialCycle);
 world.registerSystem(Motion);
 world.registerSystem(PlayerAction);
@@ -89,7 +93,6 @@ world.registerSystem(PlayerCameraMotion);
 // create something to show -- will move to ECS
 threeApp.getScene().add(new AxesHelper(8));
 threeApp.getScene().add(new Mesh(new BoxGeometry(1, 1, 1), new MeshPhongMaterial({color: 0x7f7f7f})));
-AddABunchOfCubes(threeApp.getScene(), 128, 128);
 
 // until we get the sun cycle going ...
 threeApp.getScene().add(new HemisphereLight(0xbbbbbb, 0x444444, 1));
@@ -97,6 +100,7 @@ threeApp.getScene().add(new HemisphereLight(0xbbbbbb, 0x444444, 1));
 // the player entity
 const playerObjA = new PolyTheRobot();
 const playerObjB = new FlyBoi();
+const playerObjC = new ETE();
 threeApp.getScene().add(playerObjA.sceneObject);
 threeApp.getScene().add(playerObjB.sceneObject);
 
@@ -110,18 +114,33 @@ const player = world.createEntity()
         ref: threeApp.getCamera(),
     })
     .addComponent(AvatarSet, {
-        indx: 0,
+        indx: 2,
         avatars: [
             playerObjA,
             playerObjB,
+            playerObjC,
         ],
     })
     .addComponent(SceneModel, {
-        ref: playerObjA,
+        ref: playerObjC,
     })
     .addComponent(Anima, {
         acceleration: new Vector3(0, 0, 0),
         velocity: new Vector3(0, 0, 0),
+    });
+
+const terrain = world.createEntity()
+    .addComponent(Globe, {
+        scene: threeApp.getScene(),
+        icosphereOrder: 3,
+        lodZeroOrder: 0,
+        lodIncrementDistance: 1,
+        viewDistance: 1,
+    })
+    .addComponent(GlobePosition, {
+        gridX: 0,
+        gridY: 0,
+        gridH: 0,
     });
 
 

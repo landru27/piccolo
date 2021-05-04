@@ -31,6 +31,13 @@ KeyboardInputs.schema = {
     accelerateUp: { type: Types.Boolean },
     accelerateDown: { type: Types.Boolean },
 
+    terrainXPos: { type: Types.Boolean },
+    terrainXNeg: { type: Types.Boolean },
+    terrainYPos: { type: Types.Boolean },
+    terrainYNeg: { type: Types.Boolean },
+    terrainLODPos: { type: Types.Boolean },
+    terrainLODNeg: { type: Types.Boolean },
+
     switchAvatar: { type: Types.Boolean },
 
     boostAcceleration: { type: Types.Boolean },

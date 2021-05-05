@@ -10,8 +10,6 @@ import { MeshPhongMaterial, Mesh } from 'three';
 
 const FlyBoi = function() {
 
-    const scope = this;
-
     let geometry = null;
     let material = null;
     let mesh = null;

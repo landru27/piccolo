@@ -19,8 +19,6 @@ import { KeyboardInputs } from './components/KeyboardInputs.js';
 
 const ThreeApp = function(config, options) {
 
-    const scope = this;
-
     // configuration settings
     const appConfig = config;
 

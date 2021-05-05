@@ -57,18 +57,18 @@ const Icosphere = function(size, order) {
     const d7 = 1.0;
 
     vertices.set(Float32Array.of(
-         d0, -d7,  d0,
-         d3, -d6,  d4,
-         d1, -d6,  d0,
-         d3, -d6, -d4,
+        +d0, -d7,  d0,
+        +d3, -d6,  d4,
+        +d1, -d6,  d0,
+        +d3, -d6, -d4,
         -d2, -d6, -d5,
         -d2, -d6,  d5,
-         d2,  d6,  d5,
-         d2,  d6, -d5,
+        +d2,  d6,  d5,
+        +d2,  d6, -d5,
         -d3,  d6, -d4,
         -d1,  d6,  d0,
         -d3,  d6,  d4,
-         d0,  d7,  d0,
+        +d0,  d7,  d0,
     ));
     //console.log(JSON.stringify(vertices, null, 2));
 

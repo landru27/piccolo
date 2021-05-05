@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { Object3D, Group, Color } from 'three';
+import { Object3D, Group } from 'three';
 import { Vector3, Quaternion } from 'three';
 import { CylinderBufferGeometry } from 'three';
 import { MeshPhongMaterial, Mesh } from 'three';
@@ -11,16 +11,12 @@ import { MeshPhongMaterial, Mesh } from 'three';
 
 const PolyTheRobot = function() {
 
-    const scope = this;
-
     let geometry = null;
     let material = null;
     let mesh = null;
     let spot = null;
 
     const colorA = 0xb0c4de;
-    const colorB = 0xff7f7f;
-    const colorC = new Color('steelblue');
 
     const zAxis = new Vector3(0, 0, 1);
     const rotation = new Quaternion();

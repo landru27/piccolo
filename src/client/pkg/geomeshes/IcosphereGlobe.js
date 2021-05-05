@@ -1,7 +1,6 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
-import { Color } from 'three';
 import { BufferGeometry, BufferAttribute } from 'three';
 import { MeshStandardMaterial, Mesh } from 'three';
 
@@ -9,8 +8,6 @@ import { MeshStandardMaterial, Mesh } from 'three';
 ////////////////////////////////////////////////////////////////
 
 const IcosphereGlobe = function(scene, icosphere) {
-
-    const scope = this;
 
     const vertices = icosphere.vertices;
     const triangles = icosphere.triangles;
@@ -31,7 +28,7 @@ const IcosphereGlobe = function(scene, icosphere) {
     geometry.setDrawRange(0, triangles.length);
 
     const mesh = new Mesh(geometry, new MeshStandardMaterial({
-        //color: 0x7f7f7f, 
+        //color: 0x7f7f7f,
         color: 0x16a030,
         //opacity: 0.2,
         opacity: 0.8,
@@ -40,7 +37,7 @@ const IcosphereGlobe = function(scene, icosphere) {
         roughness: 0.4,
         flatShading: true,
     }));
-                              
+
     scene.add(mesh);
 };
 

@@ -159,8 +159,8 @@ function animate() {
     world.execute(delta);
 
     let infoz = [
-        'camera position :  ' + 'TODO',  // Presentation.vector3To4Places(player.getComponent(SceneObj).position),
-        'camera velocity :  ' + 'TODO',  // Presentation.vector3To4Places(player.getComponent(Velocity).vector),
+        'camera position :  ' + Presentation.vector3To4Places(player.getComponent(SceneModel).ref.sceneObject.position),
+        'camera velocity :  ' + Presentation.vector3To4Places(player.getComponent(Anima).velocity),
         'gravity is      :  ' + 'TODO',
         'boundaries is   :  ' + 'TODO',
     ];
@@ -174,6 +174,9 @@ function animate() {
 
 ////////////////////////////////////////////////////////////////
 ////////  make it so
+
+if (player == null) { throw new Error('player undefined'); }
+if (terrain == null) { throw new Error('terrain undefined'); }
 
 let prevTime = performance.now();
 animate();

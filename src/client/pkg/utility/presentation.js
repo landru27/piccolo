@@ -1,3 +1,5 @@
+import { isUndefined } from './comparison.js';
+
 ////////  show a number to a given degree of precision
 export function toNPlaces(n, precision) {
     return Number.parseFloat(n).toFixed(precision);
@@ -15,5 +17,7 @@ export function vector2To4Places(v) {
 
 ////////  show the components of a 3D vector to 4 decimal places
 export function vector3To4Places(v) {
+    if (isUndefined(v)) { return 'undefined'; }
+
     return to4Places(v.x) + ', ' + to4Places(v.y) + ', ' + to4Places(v.z);
 }

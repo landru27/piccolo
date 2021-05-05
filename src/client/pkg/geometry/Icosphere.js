@@ -1,17 +1,12 @@
 ////////////////////////////////////////////////////////////////
 ////////  imports
 
+import { MATH_SQRT5 } from './MathematicalConstants.js';
+
 
 ////////////////////////////////////////////////////////////////
 
 const Icosphere = function(size, order) {
-
-    const scope = this;
-
-    // define select mathematical constants
-    const pi    = 3.1415926535897932;
-    const sqrt5 = 2.2360679774997897;
-    const phi   = 1.6180339887498948;
 
     // define some icosphere parameters
     const tessellation = 4 ** order;
@@ -48,12 +43,12 @@ const Icosphere = function(size, order) {
     // after : https://math.stackexchange.com/a/2174924
     //
     const d0 = 0.0;
-    const d1 = 2.0 / sqrt5;
-    const d2 =           (5 + sqrt5) / 10;
-    const d3 =           (5 - sqrt5) / 10;
-    const d4 = Math.sqrt((5 + sqrt5) / 10);
-    const d5 = Math.sqrt((5 - sqrt5) / 10);
-    const d6 = 1.0 / sqrt5;
+    const d1 = 2.0 / MATH_SQRT5;
+    const d2 =           (5 + MATH_SQRT5) / 10;
+    const d3 =           (5 - MATH_SQRT5) / 10;
+    const d4 = Math.sqrt((5 + MATH_SQRT5) / 10);
+    const d5 = Math.sqrt((5 - MATH_SQRT5) / 10);
+    const d6 = 1.0 / MATH_SQRT5;
     const d7 = 1.0;
 
     vertices.set(Float32Array.of(

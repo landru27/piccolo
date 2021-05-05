@@ -23,6 +23,7 @@
     "lint-and-fix": "eslint --config eslint.config.cjs --ext .js --fix pkg/ __tests__/",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test-detail": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose",
+    "test-debug": "node --experimental-vm-modules node_modules/jest/bin/jest.js --silent=false",
     "devsite": "snowpack dev",
     "build": "webpack --config webpack.config.cjs",
     "prettier": "prettier --check \"pkg/**/*.js\""

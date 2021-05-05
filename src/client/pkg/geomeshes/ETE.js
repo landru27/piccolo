@@ -10,8 +10,6 @@ import { Object3D, Group } from 'three';
 
 const ETE = function() {
 
-    const scope = this;
-
     let spot = null;
 
     const iota = new Group();
@@ -53,7 +51,7 @@ const ETE = function() {
             accelerationDownward: -64,
         },
 
-        animation: function(params) { },
+        animation: function() { },
     };
 };
 
